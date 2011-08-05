@@ -1,0 +1,36 @@
+music_directory		    "~/Music"
+playlist_directory		"~/.mpd/playlists"
+db_file			          "~/.mpd/database"
+log_file			        "~/.mpd/log"
+pid_file			        "~/.mpd/pid"
+state_file			      "~/.mpd/state"
+user				          "mongrelion"
+bind_to_address		    "any"
+#bind_to_address		    "~/.mpd/socket"
+port				          "6600"
+log_level			        "default"
+auto_update	          "yes"
+connection_timeout		"10"
+max_connections		    "10"
+input {
+        plugin "curl"
+}
+
+audio_output {
+  type "osx"
+  name "My Mac Device"
+  mixer_type "software"
+  format    "48000:16:2"
+}
+
+#audio_output {
+#	type		"httpd"
+#	name		"My HTTP Stream"
+#	encoder		"vorbis"		# optional, vorbis or lame
+#	bitrate		"128"			# do not define if quality is defined
+#	port		"8000"
+#	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
+##	quality		"5.0"			# do not define if bitrate is defined
+#	format		"44100:16:1"
+#	max_clients	"0"			# optional 0=no limit
+#}
