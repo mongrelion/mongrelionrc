@@ -56,3 +56,9 @@ set backspace=indent,eol,start
 " Alt + ->/<- to move tabs \o/
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+if has( "gui_macvim" )
+  colorscheme desert
+  set guifont=Monaco:h12
+  set guioptions-=T
+endif
