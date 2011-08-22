@@ -57,8 +57,12 @@ set backspace=indent,eol,start
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
+" Highlight the current line
+set cul
+
 if has( "gui_macvim" )
   colorscheme desert
   set guifont=Monaco:h12
   set guioptions-=T
+  set guioptions-=r
 endif
