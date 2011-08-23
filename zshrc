@@ -35,3 +35,9 @@ export LANG="en_US.UTF-8"
 
 # PostgreSQL data directory
 export PGDATA=/usr/local/Cellar/postgresql/9.0.4/data
+
+# Run JRuby with support for 1.9
+export JRUBY_OPTS=--1.9
+
+# Pick up node libraries
+export NODE_PATH=/usr/local/lib/node_modules
