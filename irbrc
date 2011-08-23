@@ -3,7 +3,7 @@ require 'mongoid'
 require 'wirble'
 
 begin
-  Mongoid.master = Mongo::Connection.new( 'localhost' ).db 'irb-test'
+  Mongoid.master = Mongo::Connection.new( 'localhost' ).db 'irb-test' unless defined? Rails
   # Fancy colors and history in the IRB = #win
   Wirble.init
   Wirble.colorize
