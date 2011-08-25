@@ -395,7 +395,7 @@ mouse_support = "no"
 ## ncmpcpp's browser screen.
 ##
 #
-allow_physical_files_deletion = "no"
+allow_physical_files_deletion = "yes"
 #
 allow_physical_directories_deletion = "no"
 #
