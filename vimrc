@@ -64,5 +64,5 @@ if has( "gui_macvim" )
   colorscheme desert
   set guifont=Monaco:h12
   set guioptions-=T
-  set guioptions-=r
+  set guioptions-=rL
 endif
