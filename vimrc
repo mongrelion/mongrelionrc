@@ -61,7 +61,7 @@ nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 set cul
 
 if has( "gui_macvim" )
-  colorscheme desert
+  colorscheme mustang
   set guifont=Monaco:h12
   set guioptions-=T
   set guioptions-=rL
