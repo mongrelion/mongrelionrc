@@ -1,3 +1,13 @@
+" Plugins
+" vim-pathogen  https://github.com/tpope/vim-pathogen
+" vim-endwise   https://github.com/tpope/vim-endwise
+" vim-rails     https://github.com/tpope/vim-rails
+" vim-fugitive  https://github.com/tpope/vim-fugitive
+" vim-cucumber  https://github.com/tpope/vim-cucumber
+" vim-surround  https://github.com/tpope/vim-surround
+" nerdtree      https://github.com/scrooloose/nerdtree
+" snipmate      https://github.com/msanders/snipmate.vim
+
 call pathogen#infect()
 
 " Show line numbers
