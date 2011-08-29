@@ -57,6 +57,9 @@ set backspace=indent,eol,start
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
+" Usefull commands
+command Q q
+
 " Highlight the current line
 set cul
 
@@ -66,3 +69,6 @@ if has( "gui_macvim" )
   set guioptions-=T
   set guioptions-=rL
 endif
+
+" Show/Hide NERDTree
+map <F2> :NERDTreeToggle<CR>
