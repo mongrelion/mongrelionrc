@@ -7,6 +7,7 @@
 " vim-surround  https://github.com/tpope/vim-surround
 " nerdtree      https://github.com/scrooloose/nerdtree
 " snipmate      https://github.com/msanders/snipmate.vim
+" commandt      https://github.com/wincent/Command-T
 
 call pathogen#infect()
 
@@ -82,3 +83,6 @@ endif
 
 " Show/Hide NERDTree
 map <F2> :NERDTreeToggle<CR>
+
+" Trigger CommandT
+map <silent> <C-t> :CommandT<CR>
