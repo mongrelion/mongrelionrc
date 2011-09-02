@@ -1,13 +1,15 @@
 " Plugins
-" vim-pathogen  https://github.com/tpope/vim-pathogen
-" vim-endwise   https://github.com/tpope/vim-endwise
-" vim-rails     https://github.com/tpope/vim-rails
-" vim-fugitive  https://github.com/tpope/vim-fugitive
-" vim-cucumber  https://github.com/tpope/vim-cucumber
-" vim-surround  https://github.com/tpope/vim-surround
-" nerdtree      https://github.com/scrooloose/nerdtree
-" snipmate      https://github.com/msanders/snipmate.vim
-" commandt      https://github.com/wincent/Command-T
+" vim-pathogen    https://github.com/tpope/vim-pathogen
+" vim-endwise     https://github.com/tpope/vim-endwise
+" vim-rails       https://github.com/tpope/vim-rails
+" vim-fugitive    https://github.com/tpope/vim-fugitive
+" vim-cucumber    https://github.com/tpope/vim-cucumber
+" vim-surround    https://github.com/tpope/vim-surround
+" nerdtree        https://github.com/scrooloose/nerdtree
+" snipmate        https://github.com/msanders/snipmate.vim
+" commandt        https://github.com/wincent/Command-T
+" vim-easymotion  https://github.com/Lokaltog/vim-easymotion
+" sparkup         https://github.com/rstacruz/sparkup
 
 call pathogen#infect()
 
@@ -86,3 +88,6 @@ map <F2> :NERDTreeToggle<CR>
 
 " Trigger CommandT
 map <silent> <C-t> :CommandT<CR>
+
+" I've got to set this up in order to make sparkup to work
+filetype plugin on
