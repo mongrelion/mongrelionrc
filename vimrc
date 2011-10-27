@@ -91,3 +91,10 @@ map <silent> <C-t> :CommandT<CR>
 
 " I've got to set this up in order to make sparkup to work
 filetype plugin on
+
+" Highlight whitespaces at the end of the lines
+set listchars=tab:\|⋅,trail:⋅,nbsp:⋅
+set list
+
+" Remove trailing whitespaces
+map <C-s> :%s/\s\+$//g
