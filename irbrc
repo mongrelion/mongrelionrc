@@ -1,14 +1,16 @@
 require 'rubygems'
-require 'mongoid'
-require 'wirble'
-
 begin
-  Mongoid.master = Mongo::Connection.new( 'localhost' ).db 'irb-test' unless defined? Rails
   # Fancy colors and history in the IRB = #win
+  require 'wirble'
   Wirble.init
   Wirble.colorize
-rescue Mongo::ConnectionFailure
-  puts 'MongoDB is currently not available.'
+rescue Exception => e
+end
+
+begin
+  require 'mongoid'
+  Mongoid.master = Mongo::Connection.new('localhost', 27017, logger: Logger.new($stdout)).db 'irb-test' unless defined? Rails
+rescue Exception => e
 end
 
 # Let's log all the db queries when in the rails console
