@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="blinks"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -17,15 +17,12 @@ DISABLE_AUTO_TITLE="true" # screen behaves dodgy when this is set to false
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rvm lol)
+plugins=(git rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-
-# Load RVM
-[[ -s "/Users/mongrelion/.rvm/scripts/rvm" ]] && source "/Users/mongrelion/.rvm/scripts/rvm"
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 # Screen bad behaves when no LANG is set, so...
 export LANG="en_US.UTF-8"
@@ -38,3 +35,11 @@ export JRUBY_OPTS=--1.9
 
 # Pick up node libraries
 export NODE_PATH=/usr/local/lib/node_modules
+
+# - Aliases - #
+alias bx='bundle exec'
+alias rs=bundle exec rails s -b 127.0.0.1
+
+# - rbenv - #
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
