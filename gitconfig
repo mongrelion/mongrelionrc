@@ -1,6 +1,6 @@
 [user]
-  name = Carlos León
-  email = mail@carlosleon.info
+	name = Carlos León
+	email = mail@carlosleon.info
 
 [color]
   ui = auto
@@ -20,6 +20,8 @@
 
 [alias]
   st      = status
+  sh      = stash
+  sp      = stash pop
   ci      = commit
   cm      = commit -m
   cam     = commit --amend
@@ -30,3 +32,13 @@
   pr      = pull --rebase
   pullom  = pull origin master
   pushom  = push origin master
+[core]
+  excludesfile = /Users/mongrelion/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool]
+	keepBackup = true
