@@ -10,6 +10,8 @@
 " commandt        https://github.com/wincent/Command-T
 " vim-easymotion  https://github.com/Lokaltog/vim-easymotion
 " sparkup         https://github.com/rstacruz/sparkup
+" ack             https://github.com/mileszs/ack.vim
+" tabular         https://github.com/godlygeek/tabular
 
 call pathogen#infect()
 
@@ -21,7 +23,7 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set shell=/bin/zsh
+set shell=/usr/local/bin/zsh
 
 " Indentation
 set autoindent
@@ -40,6 +42,9 @@ endif
 
 " Show status bar
 set ls=2
+
+" Customize status bar
+set stl=%m\ %f\ %=%l,%P\ %y
 
 " Show title in console title bar
 set title
@@ -66,28 +71,25 @@ set colorcolumn=80
 " Vim7.3 broke my backspace normal behavior (:(
 set backspace=indent,eol,start
 
-" Alt + ->/<- to move tabs \o/
-nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
-
 " Usefull commands
 command Q q
 
 " Highlight the current line
 set cul
 
-if has( "gui_macvim" )
-  colorscheme mustang
-  set guifont=Monaco:h12
+if has("gui_macvim")
+  colorscheme solarized
+  set background=dark
+  set guifont=VT220:h20
   set guioptions-=T
   set guioptions-=rL
 endif
 
 " Show/Hide NERDTree
-map <F2> :NERDTreeToggle<CR>
+map N :NERDTreeToggle<CR>
 
 " Trigger CommandT
-map <silent> <C-t> :CommandT<CR>
+map T :CommandT<CR>
 
 " I've got to set this up in order to make sparkup to work
 filetype plugin on
@@ -98,3 +100,14 @@ set list
 
 " Remove trailing whitespaces
 map <C-s> :%s/\s\+$//g
+
+" Replace tabs with spaces
+map <C-t> :%s/\t/\ \ /g
+
+" Remap ESC to Command E
+inoremap <D-e> <Esc>
+
+" Remap ESC
+inoremap jj <Esc>
+vnoremap ; <Esc>
+cnoremap ; <Esc>
