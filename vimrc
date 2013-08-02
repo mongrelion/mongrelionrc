@@ -1,17 +1,13 @@
 " Plugins
-" vim-pathogen    https://github.com/tpope/vim-pathogen
-" vim-endwise     https://github.com/tpope/vim-endwise
-" vim-rails       https://github.com/tpope/vim-rails
-" vim-fugitive    https://github.com/tpope/vim-fugitive
-" vim-cucumber    https://github.com/tpope/vim-cucumber
-" vim-surround    https://github.com/tpope/vim-surround
-" nerdtree        https://github.com/scrooloose/nerdtree
-" snipmate        https://github.com/msanders/snipmate.vim
-" commandt        https://github.com/wincent/Command-T
-" vim-easymotion  https://github.com/Lokaltog/vim-easymotion
-" sparkup         https://github.com/rstacruz/sparkup
-" ack             https://github.com/mileszs/ack.vim
-" tabular         https://github.com/godlygeek/tabular
+" vim-pathogen https://github.com/tpope/vim-pathogen
+" vim-endwise  https://github.com/tpope/vim-endwise
+" vim-rails    https://github.com/tpope/vim-rails
+" vim-fugitive https://github.com/tpope/vim-fugitive
+" vim-airline  https://github.com/bling/vim-airline
+" nerdtree     https://github.com/scrooloose/nerdtree
+" snipmate     https://github.com/msanders/snipmate.vim
+" ctrlp.vim    https://github.com/kien/ctrlp.vim
+" ack          https://github.com/mileszs/ack.vim
 
 call pathogen#infect()
 
@@ -43,9 +39,6 @@ endif
 " Show status bar
 set ls=2
 
-" Customize status bar
-set stl=%m\ %f\ %=%l,%P\ %y
-
 " Show title in console title bar
 set title
 
@@ -66,7 +59,7 @@ set nowritebackup
 set noswapfile
 
 " 80 chars per row!
-set colorcolumn=80
+set colorcolumn=81
 
 " Vim7.3 broke my backspace normal behavior (:(
 set backspace=indent,eol,start
@@ -77,19 +70,29 @@ command Q q
 " Highlight the current line
 set cul
 
-if has("gui_macvim")
-  colorscheme solarized
+if has("gui_running")
   set background=dark
-  set guifont=VT220:h20
+  colorscheme monokai
+  "set guifont=Menlo:h11
+  set guifont=Monaco:h12
   set guioptions-=T
   set guioptions-=rL
+  set transp=2
+else
+  colorscheme monokai
 endif
 
 " Show/Hide NERDTree
 map N :NERDTreeToggle<CR>
 
-" Trigger CommandT
-map T :CommandT<CR>
+" Trigger CommandP
+map <C-p> :CtrlP<CR>
+
+" Trigger CTags
+map <C-t> :TlistToggle<CR>
+
+" Run spec
+map <C-s> :! spec %
 
 " I've got to set this up in order to make sparkup to work
 filetype plugin on
@@ -99,15 +102,22 @@ set listchars=tab:\|⋅,trail:⋅,nbsp:⋅
 set list
 
 " Remove trailing whitespaces
-map <C-s> :%s/\s\+$//g
+map S :%s/\s\+$//g<CR>:w<CR>
 
 " Replace tabs with spaces
-map <C-t> :%s/\t/\ \ /g
+map tt :%s/\t/\ \ /g<CR>:w<CR>
 
 " Remap ESC to Command E
 inoremap <D-e> <Esc>
 
 " Remap ESC
 inoremap jj <Esc>
-vnoremap ; <Esc>
-cnoremap ; <Esc>
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Airline config
+"let g:airline_theme='light'
+let g:airline_enable_fugitive=1
+let g:airline_powerline_fonts=1
+
+set ttimeoutlen=50
