@@ -1,6 +1,6 @@
 [user]
-	name = Carlos León
-	email = mail@carlosleon.info
+  name = Carlos León
+  email = mail@carlosleon.info
 
 [color]
   ui = auto
@@ -19,26 +19,39 @@
   untracked = cyan
 
 [alias]
-  st      = status
-  sh      = stash
-  sp      = stash pop
-  ci      = commit
-  cm      = commit -m
-  cam     = commit --amend
-  br      = branch
-  co      = checkout
-  df      = diff
-  lg      = log -p
-  pr      = pull --rebase
-  pullom  = pull origin master
-  pushom  = push origin master
+  st  = status
+  sh  = stash
+  sp  = stash pop
+  ci  = commit
+  cm  = commit -m
+  cma = commit -a -m
+  cam = commit --amend
+  br  = branch
+  co  = checkout
+  df  = diff
+  lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  pl  = log --pretty=oneline --abbrev-commit
+  pr  = pull --rebase
+  f   = fetch
 [core]
   excludesfile = /Users/mongrelion/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [mergetool]
-	keepBackup = true
+  keepBackup = true
+[diff]
+  tool = diffmerge
+[difftool "diffmerge"]
+  cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[merge]
+  tool = diffmerge
+[mergetool "diffmerge"]
+  cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+  trustExitCode = true
+[difftool "sourcetree"]
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+  trustExitCode = true
+[push]
+	default = simple
