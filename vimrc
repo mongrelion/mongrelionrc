@@ -74,7 +74,8 @@ if has("gui_running")
   set background=dark
   colorscheme monokai
   "set guifont=Menlo:h11
-  set guifont=Monaco:h12
+  "set guifont=Monaco:h12
+  set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h12
   set guioptions-=T
   set guioptions-=rL
   set transp=2
@@ -92,7 +93,7 @@ map <C-p> :CtrlP<CR>
 map <C-t> :TlistToggle<CR>
 
 " Run spec
-map <C-s> :! spec %
+map <C-s> :! spec %<CR>
 
 " I've got to set this up in order to make sparkup to work
 filetype plugin on
