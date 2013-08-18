@@ -27,7 +27,7 @@ alias tailtest="tail -f log/test.log"
 alias tailprod="tail -f log/production.log"
 
 # PostgreSQL data directory
-export PGDATA=/usr/local/var/postgresql
+export PGDATA=/usr/local/var/postgres
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
