@@ -1,7 +1,16 @@
-# Prompt theme.
-PS1=' \[\e[1;34m\]∴\[\e[m\] '
-
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+PS1SYM='\[\e[1;34m\]∴\[\e[m\]'
+
+function git_branch {
+  false && [ -e .git ] && echo "\[\e[1;32m\]`git rev-parse --abbrev-ref HEAD` $PS1SYM "
+}
+
+# Prompt theme.
+function ps1 {
+  echo " $PS1SYM `git_branch`"
+}
+PS1=`ps1`
 
 # Vi mode
 #set -o vi
@@ -53,5 +62,6 @@ alias t="zeus test"
 alias f="foreman s -f Zeusfile"
 alias ssl="bundle exec foreman run ssl -f Zeusfile"
 alias solr="bundle exec foreman run solr -f Zeusfile"
+alias web="bundle exec foreman run web -f Zeusfile"
 
 alias l="ls -laG"
