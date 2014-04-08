@@ -1,15 +1,13 @@
-" Plugins
-" vim-pathogen https://github.com/tpope/vim-pathogen
-" vim-endwise  https://github.com/tpope/vim-endwise
-" vim-rails    https://github.com/tpope/vim-rails
-" vim-fugitive https://github.com/tpope/vim-fugitive
-" vim-airline  https://github.com/bling/vim-airline
-" nerdtree     https://github.com/scrooloose/nerdtree
-" snipmate     https://github.com/msanders/snipmate.vim
-" ctrlp.vim    https://github.com/kien/ctrlp.vim
-" ack          https://github.com/mileszs/ack.vim
+"set nocompatible
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-call pathogen#infect()
+" Plugins
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 " Show line numbers
 set number
@@ -19,7 +17,7 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set shell=/usr/local/bin/zsh
+set shell=/usr/local/bin/bash
 
 " Indentation
 set autoindent
@@ -72,7 +70,7 @@ set cul
 
 if has("gui_running")
   set background=dark
-  colorscheme monokai
+  colorscheme mustang
   "set guifont=Menlo:h11
   "set guifont=Monaco:h12
   set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h12
@@ -80,7 +78,8 @@ if has("gui_running")
   set guioptions-=rL
   set transp=2
 else
-  colorscheme monokai
+  colo solarized
+  set bg=dark
 endif
 
 " Show/Hide NERDTree
