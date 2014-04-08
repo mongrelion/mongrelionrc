@@ -1,4 +1,5 @@
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PGDATA=/usr/local/var/postgres
 
 PS1SYM='\[\e[1;34m\]∴\[\e[m\]'
 
@@ -27,15 +28,10 @@ function en {
   echo "nvm enabled."
 }
 
-# Enable ruby via chruby
-function er {
-  source /usr/local/share/chruby/chruby.sh
-  chruby 2.0.0-p353
-  echo "chruby enabled."
-}
-
-# Automatically enable ruby
-er
+# Enable ruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+#chruby 2.1
 
 # Aliases
 alias td="tail -f log/development.log"
@@ -54,6 +50,7 @@ alias gdf="git df"
 alias br="git br"
 alias cb="git co -b"
 alias gf="git fetch origin"
+alias b="git blame"
 
 alias z="bundle exec zeus start"
 alias g="bundle exec guard start"
