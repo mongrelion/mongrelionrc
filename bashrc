@@ -1,26 +1,23 @@
+export EDITOR='vim'
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PGDATA=/usr/local/var/postgres
 
-PS1SYM='\[\e[1;34m\]∴\[\e[m\]'
+# Git autocompletion
+source /usr/local/etc/bash_completion.d/git-completion.bash
 
-function git_branch {
-  false && [ -e .git ] && echo "\[\e[1;32m\]`git rev-parse --abbrev-ref HEAD` $PS1SYM "
-}
+# Pass autocompletion
+source /usr/local/etc/bash_completion.d/password-store
+
+PS1SYM='\[\e[1;34m\]∴\[\e[m\]'
 
 # Prompt theme.
 function ps1 {
-  echo " $PS1SYM `git_branch`"
+  echo " $PS1SYM "
 }
 PS1=`ps1`
 
-# Vi mode
-#set -o vi
-
 # Autocomplete ignores case
 set completion-ignore-case on
-
-# Git autocompletion
-source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # Enable node via nvm
 function en {
@@ -34,13 +31,17 @@ source /usr/local/share/chruby/auto.sh
 #chruby 2.1
 
 # Aliases
+alias d="cap production deploy"
+alias rev="cap production deploy:check_revision"
+
 alias td="tail -f log/development.log"
 alias tt="tail -f log/test.log"
 alias tp="tail -f log/production.log"
-alias cl="echo '' > log/development.log; echo '' > log/test.log; clear"
+alias cl="du -h log/; echo '' > log/development.log; echo '' > log/test.log; echo 'Logs reset!'; du -h log/"
 alias rorig="rm **/*.orig"
 
 # Git aliases
+alias cm="git cm"
 alias gm="git mergetool -t opendiff"
 alias ga="git add"
 alias gap="git add -p"
@@ -51,6 +52,8 @@ alias br="git br"
 alias cb="git co -b"
 alias gf="git fetch origin"
 alias b="git blame"
+alias up="git fetch origin && git rebase origin/master master"
+alias stash="git stash save"
 
 alias z="bundle exec zeus start"
 alias g="bundle exec guard start"
@@ -60,5 +63,9 @@ alias f="foreman s -f Zeusfile"
 alias ssl="bundle exec foreman run ssl -f Zeusfile"
 alias solr="bundle exec foreman run solr -f Zeusfile"
 alias web="bundle exec foreman run web -f Zeusfile"
+alias m="RAILS_ENV=test bundle exec rake db:migrate"
+alias mc="bundle exec mailcatcher --foreground"
+alias rs="bundle exec rspec"
 
 alias l="ls -laG"
+export GOPATH=/Users/mongrelion/code/personal/go
