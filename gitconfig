@@ -28,6 +28,7 @@
   cam = commit --amend
   br  = branch
   co  = checkout
+  cob = checkout -b
   df  = diff
   lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -36,22 +37,31 @@
   f   = fetch
 [core]
   excludesfile = /Users/mongrelion/.gitignore_global
+  editor = /usr/local/bin/vim
+
 [mergetool]
   keepBackup = true
+
 [diff]
   tool = diffmerge
+
 [difftool "diffmerge"]
   cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+
 [merge]
   tool = diffmerge
+
 [mergetool "diffmerge"]
   cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
   trustExitCode = true
+
 [difftool "sourcetree"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
   path =
+
 [mergetool "sourcetree"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
   trustExitCode = true
+
 [push]
-	default = simple
+  default = simple
