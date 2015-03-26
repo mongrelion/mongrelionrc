@@ -1,0 +1,5 @@
+# Dump only the given tables from pg
+# -a: Dump only the data, not the schema
+# -O: Skip restoration of object ownership in
+# -x: Do not dump privileges (grant/revoke)
+pg_dump -aOx -t TABLE_NAME DB_NAME > /path/to/backup.sql

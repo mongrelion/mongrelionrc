@@ -1,0 +1,8 @@
+# Delete last commit
+git reset --soft HEAD~1
+
+# Edit a given commit
+git rebase -i SHA1^1
+
+# Check which files have changed in the current feature branch from master.
+git diff HEAD..master --name-only

@@ -1,0 +1,2 @@
+# Move the current pane to its own window
+:break-pane

@@ -1,0 +1,6 @@
+# Jobs count, grouped per worker class
+queues = %w(high medium_high medium_low low)
+queues.each do |queue|
+  q = Sidekiq::Queue.new(queue)
+  puts q.each_with_object(Hash.new(0)) { |item, obj| obj[item.klass] += 1 }
+end
