@@ -1,0 +1,5 @@
+# Count orphan records (records from table A that are related to records that don't exist anymore on table B)
+SELECT    COUNT(*)                                        -- Count the records
+FROM      posts                                           -- From the `posts` table
+LEFT JOIN categories ON posts.category_id = categories.id -- Joining `categories` table
+WHERE     categories.id IS NULL;                          -- Only posts that are associated to a non-existing category.
