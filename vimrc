@@ -1,12 +1,18 @@
-"set nocompatible
+set nocompatible
 filetype off
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " Plugins
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/snipMate'
+Plugin 'slim-template/vim-slim.git'
+
+call vundle#end()
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
@@ -20,6 +26,7 @@ set softtabstop=2
 set tabstop=2
 
 " Indentation
+filetype plugin indent on
 set autoindent
 set cindent
 set smartindent
@@ -40,6 +47,9 @@ set re=1
 " Status bar
 set ls=2
 
+" Start scrolling 9 lines before edge of viewport
+set scrolloff=9
+
 " Search stuff
 " Case insensitive search
 set ignorecase
@@ -51,13 +61,16 @@ set incsearch
 " Press Spacebar for cleaning highlighted search matches.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+" Press ENTER in navigation mode to save the current file.
+nnoremap <Enter> :w<CR>
+
 " No backups
 set nobackup
 set nowritebackup
 set noswapfile
 
 " Colorscheme
-colo mustang
+colo molokai
 
 " Trigger CommandP
 map <C-p> :CtrlP<CR>
@@ -74,3 +87,6 @@ map tt :%s/\t/\ \ /g<CR>:w<CR>
 
 " Remap ESC
 inoremap jj <Esc>
+
+" Tabs instead of spaces for Go.
+au FileType go setl tabstop=2 noexpandtab shiftwidth=2 softtabstop=2
