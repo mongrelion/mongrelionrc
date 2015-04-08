@@ -1,14 +1,17 @@
+export LANG="en_US.UTF-8"
 export EDITOR='vim'
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export GOBIN=$HOME/code/os/go/bin
+export GOPATH=/Users/mongrelion/code/personal/go
 export PGDATA=/usr/local/var/postgres
+export NVM_DIR=~/.nvm
+export NOTESDIR=$HOME/.notes/
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$GOBIN"
 
 # Git autocompletion
 source /usr/local/etc/bash_completion.d/git-completion.bash
 
-# Pass autocompletion
-source /usr/local/etc/bash_completion.d/password-store
-
-PS1SYM='\[\e[1;34m\]∴\[\e[m\]'
+SYM="λ"
+PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
 
 # Prompt theme.
 function ps1 {
@@ -16,8 +19,8 @@ function ps1 {
 }
 PS1=`ps1`
 
-# Autocomplete ignores case
-set completion-ignore-case on
+# Vi mode
+set -o vi
 
 # Enable node via nvm
 function en {
@@ -31,22 +34,25 @@ source /usr/local/share/chruby/auto.sh
 #chruby 2.1
 
 # Aliases
-alias d="cap production deploy"
+alias d="bundle install && bundle exec cap production deploy"
 alias rev="cap production deploy:check_revision"
 
 alias td="tail -f log/development.log"
 alias tt="tail -f log/test.log"
 alias tp="tail -f log/production.log"
-alias cl="du -h log/; echo '' > log/development.log; echo '' > log/test.log; echo 'Logs reset!'; du -h log/"
+alias cl="du -h log/; for f in log/*.log; do echo '' > \$f; done; echo 'Logs reset!'; du -h log/"
 alias rorig="rm **/*.orig"
 
 # Git aliases
-alias cm="git cm"
-alias gm="git mergetool -t opendiff"
-alias ga="git add"
+alias such=git
+alias wow=git
+alias much=git
+alias very=git
+alias cm="git commit -v"
+alias ga="git commit -a --amend -C HEAD"
+alias gad="git add"
 alias gap="git add -p"
 alias gs="git st"
-alias gc="git ci"
 alias gdf="git df"
 alias br="git br"
 alias cb="git co -b"
@@ -54,18 +60,33 @@ alias gf="git fetch origin"
 alias b="git blame"
 alias up="git fetch origin && git rebase origin/master master"
 alias stash="git stash save"
+alias dfc="git df --cached"
+alias reset="git reset HEAD"
+alias mycommits="git log --author=Carlos"
+alias elc="git rebase -i HEAD^"
+alias amend="git commit --amend"
+alias rc="git rebase --continue"
 
-alias z="bundle exec zeus start"
-alias g="bundle exec guard start"
-alias c="zeus c"
-alias t="zeus test"
-alias f="foreman s -f Zeusfile"
-alias ssl="bundle exec foreman run ssl -f Zeusfile"
-alias solr="bundle exec foreman run solr -f Zeusfile"
-alias web="bundle exec foreman run web -f Zeusfile"
-alias m="RAILS_ENV=test bundle exec rake db:migrate"
+alias c="./bin/rails c"
+alias t="./bin/rspec"
+alias solr="./bin/rake sunspot:solr:run"
+alias web="./bin/spring rails s"
+alias sk="bundle exec sidekiq -C config/sidekiq.yml -c 1"
+alias m="./bin/rake db:migrate"
+alias mt="RAILS_ENV=test bundle exec rake db:migrate"
 alias mc="bundle exec mailcatcher --foreground"
-alias rs="bundle exec rspec"
 
 alias l="ls -laG"
-export GOPATH=/Users/mongrelion/code/personal/go
+
+alias motd="fortune | cowsay | lolcat"
+alias db="pgcli springest_development"
+
+# Clean Redis
+alias credis="echo 'FLUSHALL' | redis-cli"
+
+alias v=vagrant
+
+# Edit hosts file
+alias eh="sudo vim /etc/hosts"
+
+export VAGRANT_NO_PARALLEL=true
