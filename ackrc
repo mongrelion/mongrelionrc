@@ -1,0 +1,12 @@
+# Don't look in the tmp folder
+--ignore-directory=is:tmp
+
+# Ignore fixtures/stub data
+--ignore-directory=is:spec/fixtures/vcr_cassettes
+--ignore-directory=is:spec/fixtures/xml
+
+# Ignore Solr index data
+--ignore-directory=is:solr
+
+# Ignore logs
+--ignore-directory=is:log
