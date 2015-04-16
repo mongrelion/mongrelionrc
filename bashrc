@@ -34,7 +34,7 @@ source /usr/local/share/chruby/auto.sh
 #chruby 2.1
 
 # Aliases
-alias d="bundle install && bundle exec cap production deploy"
+alias d="bundle exec cap production deploy"
 alias rev="cap production deploy:check_revision"
 
 alias td="tail -f log/development.log"
@@ -88,5 +88,14 @@ alias v=vagrant
 
 # Edit hosts file
 alias eh="sudo vim /etc/hosts"
+
+# Start ElasticSearch
+function es {
+  minmem=256M
+  maxmem=512M
+  pidfile=/usr/local/var/run/elasticsearch.pid
+  configfile=$(brew --prefix elasticsearch)/config/elasticsearch.yml
+  ES_MIN_MEM=$minmem ES_MAX_MEM=$maxmem elasticsearch -d -p $pidfile $configfile
+}
 
 export VAGRANT_NO_PARALLEL=true
