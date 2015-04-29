@@ -11,6 +11,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/snipMate'
 Plugin 'slim-template/vim-slim.git'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 
@@ -53,6 +54,8 @@ set scrolloff=9
 " Search stuff
 " Case insensitive search
 set ignorecase
+" Case sensitive if including capitals.
+set smartcase
 " Highlight search matches
 set hlsearch
 " Incremental search
@@ -70,7 +73,8 @@ set nowritebackup
 set noswapfile
 
 " Colorscheme
-colo molokai
+"colo molokai
+colo default
 
 " Trigger CommandP
 map <C-p> :CtrlP<CR>
@@ -90,3 +94,8 @@ inoremap jj <Esc>
 
 " Tabs instead of spaces for Go.
 au FileType go setl tabstop=2 noexpandtab shiftwidth=2 softtabstop=2
+
+" Hide scrollbars
+if has("gui_running")
+  set go-=rL
+endif
