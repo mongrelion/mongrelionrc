@@ -5,6 +5,9 @@
 --ignore-directory=is:spec/fixtures/vcr_cassettes
 --ignore-directory=is:spec/fixtures/xml
 
+# Ignore vendor libs.
+--ignore-directory=is:vendor
+
 # Ignore Solr index data
 --ignore-directory=is:solr
 
