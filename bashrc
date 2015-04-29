@@ -40,8 +40,13 @@ alias rev="cap production deploy:check_revision"
 alias td="tail -f log/development.log"
 alias tt="tail -f log/test.log"
 alias tp="tail -f log/production.log"
-alias cl="du -h log/; for f in log/*.log; do echo '' > \$f; done; echo 'Logs reset!'; du -h log/"
 alias rorig="rm **/*.orig"
+
+function cl {
+  du -hs log/
+  ls log/*.log | awk '{ print "echo \"\" > "$1 }' | sh
+  du -hs log/
+}
 
 # Git aliases
 alias such=git
@@ -66,6 +71,7 @@ alias mycommits="git log --author=Carlos"
 alias elc="git rebase -i HEAD^"
 alias amend="git commit --amend"
 alias rc="git rebase --continue"
+alias pull="git pull --rebase"
 
 alias c="./bin/rails c"
 alias t="./bin/rspec"
