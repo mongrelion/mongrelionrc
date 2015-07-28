@@ -1,6 +1,6 @@
 [user]
   name = Carlos León
-  email = mongrelion@dev-co.org
+  email = mail@carlosleon.info
 
 [color]
   ui = auto
@@ -27,6 +27,7 @@
   cma = commit -a -m
   cam = commit --amend
   br  = branch
+  db  = branch -d
   co  = checkout
   cob = checkout -b
   df  = diff
