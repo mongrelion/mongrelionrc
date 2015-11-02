@@ -103,12 +103,7 @@
         {
             "code": "0x0B",
             "h": 4,
-            "layers": {
-                "0": {
-                    "key": "TAB",
-                    "label": "TAB"
-                }
-            },
+            "layers": {},
             "w": 4,
             "x": 26,
             "y": 7
@@ -181,7 +176,12 @@
         {
             "code": "0x11",
             "h": 4,
-            "layers": {},
+            "layers": {
+                "0": {
+                    "key": "TAB",
+                    "label": "TAB"
+                }
+            },
             "w": 6,
             "x": 0,
             "y": 6
@@ -267,7 +267,12 @@
         {
             "code": "0x1B",
             "h": 4,
-            "layers": {},
+            "layers": {
+                "0": {
+                    "key": "CONS:VOLUMEUP",
+                    "label": "VOL+"
+                }
+            },
             "w": 4,
             "x": 30,
             "y": 18
@@ -283,12 +288,7 @@
         {
             "code": "0x1D",
             "h": 4,
-            "layers": {
-                "0": {
-                    "key": "BACKSPACE",
-                    "label": "BKSP"
-                }
-            },
+            "layers": {},
             "w": 4,
             "x": 26,
             "y": 13
@@ -374,7 +374,12 @@
         {
             "code": "0x24",
             "h": 4,
-            "layers": {},
+            "layers": {
+                "0": {
+                    "key": "CONS:VOLUMEDOWN",
+                    "label": "VOL-"
+                }
+            },
             "w": 4,
             "x": 30,
             "y": 22
@@ -382,12 +387,7 @@
         {
             "code": "0x25",
             "h": 4,
-            "layers": {
-                "1": {
-                    "key": "CONS:MUTE",
-                    "label": "MUTE"
-                }
-            },
+            "layers": {},
             "w": 4,
             "x": 30,
             "y": 26
@@ -395,12 +395,7 @@
         {
             "code": "0x26",
             "h": 4,
-            "layers": {
-                "1": {
-                    "key": "CONS:VOLUMEDOWN",
-                    "label": "VOL-"
-                }
-            },
+            "layers": {},
             "w": 4,
             "x": 26,
             "y": 24
@@ -412,10 +407,6 @@
                 "0": {
                     "key": "LGUI",
                     "label": "LGUI"
-                },
-                "1": {
-                    "key": "CONS:VOLUMEUP",
-                    "label": "VOL+"
                 }
             },
             "w": 4,
@@ -548,6 +539,10 @@
             "code": "0x07",
             "h": 4,
             "layers": {
+                "0": {
+                    "key": "QUOTE",
+                    "label": "'"
+                },
                 "2": {
                     "key": "P-",
                     "label": "P-"
@@ -670,7 +665,12 @@
         {
             "code": "0x11",
             "h": 4,
-            "layers": {},
+            "layers": {
+                "0": {
+                    "key": "BACKSPACE",
+                    "label": "BKSP"
+                }
+            },
             "w": 6,
             "x": 66,
             "y": 6
@@ -790,8 +790,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "NEXT LAYER",
-                    "label": "NEXT-\u0192"
+                    "key": "CONS:BRIGHTNESSINCREMENT",
+                    "label": "SCRN+"
                 }
             },
             "w": 4,
@@ -913,8 +913,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "PREV LAYER",
-                    "label": "PREV-\u0192"
+                    "key": "CONS:BRIGHTNESSDECREMENT",
+                    "label": "SCRN-"
                 }
             },
             "w": 4,
@@ -936,10 +936,6 @@
                 "0": {
                     "key": "RALT",
                     "label": "RALT"
-                },
-                "1": {
-                    "key": "CONS:BRIGHTNESSDECREMENT",
-                    "label": "SCRN-"
                 }
             },
             "w": 4,
@@ -953,10 +949,6 @@
                 "0": {
                     "key": "RSHIFT",
                     "label": "R\u21d1"
-                },
-                "1": {
-                    "key": "CONS:BRIGHTNESSINCREMENT",
-                    "label": "SCRN+"
                 },
                 "2": {
                     "key": "P0",
