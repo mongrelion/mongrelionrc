@@ -73,15 +73,6 @@ alias amend="git commit --amend"
 alias rc="git rebase --continue"
 alias pull="git pull --rebase"
 
-alias c="./bin/rails c"
-alias t="./bin/rspec"
-alias solr="./bin/rake sunspot:solr:run"
-alias web="./bin/spring rails s"
-alias sk="bundle exec sidekiq -C config/sidekiq.yml -c 1"
-alias m="./bin/rake db:migrate"
-alias mt="RAILS_ENV=test bundle exec rake db:migrate"
-alias mc="bundle exec mailcatcher --foreground"
-
 alias l="ls -laG"
 
 alias motd="fortune | cowsay | lolcat"
