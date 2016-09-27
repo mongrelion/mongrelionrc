@@ -10,8 +10,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/snipMate'
-Plugin 'slim-template/vim-slim.git'
-Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'fatih/vim-go'
+Plugin 'croaker/mustang-vim'
 
 call vundle#end()
 
@@ -47,6 +48,7 @@ set re=1
 
 " Status bar
 set ls=2
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " Start scrolling 9 lines before edge of viewport
 set scrolloff=9
@@ -73,11 +75,13 @@ set nowritebackup
 set noswapfile
 
 " Colorscheme
-"colo molokai
-colo default
+colo mustang
 
 " Trigger CommandP
 map <C-p> :CtrlP<CR>
+
+" Close tab
+map <C-k> :q<CR>
 
 " Highlight whitespaces at the end of the lines
 set listchars=tab:\|⋅,trail:⋅,nbsp:⋅
@@ -94,8 +98,26 @@ inoremap jj <Esc>
 
 " Tabs instead of spaces for Go.
 au FileType go setl tabstop=2 noexpandtab shiftwidth=2 softtabstop=2
+au FileType c setl tabstop=2 shiftwidth=2 softtabstop=2
 
 " Hide scrollbars
 if has("gui_running")
   set go-=rL
+endif
+
+" Toggle NERDTree
+map N :NERDTreeToggle<CR>
+
+" Ignore build/
+set wildignore+=*/build/*
+
+" Folding
+"set fdm=syntax
+
+" Have CtrlP use ag instead of grep
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s --files-with-matches --hidden --ignore .git/ --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+else
+  let g:ctrlp_show_hidden = 1
 endif
