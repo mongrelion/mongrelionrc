@@ -1,0 +1,6 @@
+# Multiple machines
+config.vm.define "foo" do |machine|
+end
+
+config.vm.define "bar" do |machine|
+end

@@ -1,0 +1,2 @@
+# Follow redirects
+curl -L http://example.org/302

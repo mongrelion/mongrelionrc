@@ -1,0 +1,2 @@
+# Run a container in a node tagged with `environment=test`
+docker run -d -P -e constraint:environment==test --name gapp mongrelion/gapp

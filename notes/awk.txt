@@ -1,2 +1,5 @@
 # Kill all processes matching a pattern
 ps x | ack PATTERN | awk '{print "kill -9 "$1'} | sh
+
+# Find "foo" and replace with "bar" on column x and print it out
+ack '{ gsub("foo", "bar", $x); print $x }'

@@ -6,3 +6,6 @@ git rebase -i SHA1^1
 
 # Check which files have changed in the current feature branch from master.
 git diff HEAD..master --name-only
+
+# Get last commit hash
+git log -1 --pretty=%H

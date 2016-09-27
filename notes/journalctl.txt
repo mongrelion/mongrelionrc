@@ -1,0 +1,2 @@
+# Logs for a given unit
+journalctl -xe -u theunit.service

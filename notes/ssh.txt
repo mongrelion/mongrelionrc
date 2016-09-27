@@ -1,0 +1,5 @@
+# This command will read the server signature/fingerprint and add
+# it to the list of known hosts.
+# Handy when working with (provisioning) new servers and want to
+# avoid the (yes/no) prompt for each new one.
+ssh-keyscan -t rsa 1.2.3.4 >> ~/.ssh/known_hosts

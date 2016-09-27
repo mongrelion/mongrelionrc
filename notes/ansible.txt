@@ -1,0 +1,13 @@
+# Config for running tasks in localhost
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: one task
+      command: echo ayylmao
+
+# Get the list of keys on a dictionary
+- debug:
+    var: foo["bar"].keys()
+
+# or
+- debug: var=foo["bar"].keys()

@@ -1,0 +1,11 @@
+# Clip a video
+# - seek_time
+#   which point in the video to start "recording" from
+# - duration
+#   how long should the clip last
+ffmpeg -ss seek_time -i input.mp4 -t duration -c copy output.mp4
+
+# Scale a video
+# - scale=800:-1
+#   Scales the video to X=800 Y=calculated (-1 triggers calculation)
+ffmpeg -i input.mp4 -vf scale=800:-1 output.mp4
