@@ -1,72 +1,39 @@
+export SHELL=/usr/local/bin/bash
 export LANG="en_US.UTF-8"
 export EDITOR='vim'
-export GOBIN=$HOME/code/os/go/bin
-export GOPATH=/Users/mongrelion/code/personal/go
-export PGDATA=/usr/local/var/postgres
-export NVM_DIR=~/.nvm
-export NOTESDIR=$HOME/.notes/
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$GOBIN"
+#export GOROOT=~/code/os/google/go
+export GOPATH=/usr/local/opt/go
+export NOTESDIR=~/code/personal/mongrelionrc/notes/
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin"
+export PATH="$PATH:$GOPATH/bin"
+export GTK_PATH=/usr/local/lib/gtk-2.0
 
-# Git autocompletion
-source /usr/local/etc/bash_completion.d/git-completion.bash
-
-SYM="λ"
+SYM="~[👾 ]~"
 PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
 
 # Prompt theme.
 function ps1 {
   echo " $PS1SYM "
 }
-PS1=`ps1`
+#PS1=`ps1`
+PS1=" $SYM "
 
 # Vi mode
 set -o vi
 
-# Enable node via nvm
-function en {
-  source $(brew --prefix nvm)/nvm.sh
-  echo "nvm enabled."
-}
-
-# Enable ruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-#chruby 2.1
-
 # Aliases
-alias d="bundle exec cap production deploy"
-alias rev="cap production deploy:check_revision"
+alias todo="ag TODO"
 
-alias td="tail -f log/development.log"
-alias tt="tail -f log/test.log"
-alias tp="tail -f log/production.log"
-alias rorig="rm **/*.orig"
-
-function cl {
-  du -hs log/
-  ls log/*.log | awk '{ print "echo \"\" > "$1 }' | sh
-  du -hs log/
-}
+# Ansible
+alias ap="ansible-playbook"
 
 # Git aliases
-alias such=git
-alias wow=git
-alias much=git
-alias very=git
 alias cm="git commit -v"
-alias ga="git commit -a --amend -C HEAD"
-alias gad="git add"
-alias gap="git add -p"
 alias gs="git st"
 alias gdf="git df"
-alias br="git br"
-alias cb="git co -b"
-alias gf="git fetch origin"
 alias b="git blame"
-alias up="git fetch origin && git rebase origin/master master"
-alias stash="git stash save"
 alias dfc="git df --cached"
-alias reset="git reset HEAD"
 alias mycommits="git log --author=Carlos"
 alias elc="git rebase -i HEAD^"
 alias amend="git commit --amend"
@@ -76,24 +43,15 @@ alias pull="git pull --rebase"
 alias l="ls -laG"
 
 alias motd="fortune | cowsay | lolcat"
-alias db="pgcli springest_development"
-
-# Clean Redis
-alias credis="echo 'FLUSHALL' | redis-cli"
 
 alias v=vagrant
 
-# Edit hosts file
-alias eh="sudo vim /etc/hosts"
+alias d="docker"
+alias dc="docker-compose -f system-test/src/test/resources/mesos-es/docker-compose.yml"
+alias t="terraform"
 
-# Start ElasticSearch
-function es {
-  minmem=256M
-  maxmem=512M
-  pidfile=/usr/local/var/run/elasticsearch.pid
-  configfile=$(brew --prefix elasticsearch)/config/elasticsearch.yml
-  ES_MIN_MEM=$minmem ES_MAX_MEM=$maxmem elasticsearch -d -p $pidfile $configfile
-}
+bind -m vi-insert "\C-l.":clear-screen
+
 # color for man pages
 man() {
   env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -106,5 +64,21 @@ man() {
     man "$@"
 }
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
-export VAGRANT_NO_PARALLEL=true
+function tri {
+  tree -L $1 $2
+}
+export -f tri
+
+function regserver {
+  ssh-keyscan -t rsa $1 >> ~/.ssh/known_hosts
+  echo done
+}
+
+function en {
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
+}
