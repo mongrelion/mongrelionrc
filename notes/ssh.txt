@@ -3,3 +3,6 @@
 # Handy when working with (provisioning) new servers and want to
 # avoid the (yes/no) prompt for each new one.
 ssh-keyscan -t rsa 1.2.3.4 >> ~/.ssh/known_hosts
+
+# Remove a host entry from ~/.ssh/known_hosts
+ssh-keygen -R host
