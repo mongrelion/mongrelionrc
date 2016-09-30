@@ -47,7 +47,7 @@ alias motd="fortune | cowsay | lolcat"
 alias v=vagrant
 
 alias d="docker"
-alias dc="docker-compose -f system-test/src/test/resources/mesos-es/docker-compose.yml"
+alias dc="docker-compose"
 alias t="terraform"
 
 bind -m vi-insert "\C-l.":clear-screen
