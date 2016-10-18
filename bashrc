@@ -7,6 +7,7 @@ export NOTESDIR=~/code/personal/mongrelionrc/notes/
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export GTK_PATH=/usr/local/lib/gtk-2.0
 
 SYM="~[👾 ]~"
