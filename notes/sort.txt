@@ -1,0 +1,2 @@
+# Sort shit by its actual size
+du -hs * | sort -h

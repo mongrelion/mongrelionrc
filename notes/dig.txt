@@ -1,0 +1,2 @@
+# Query a DNS record from a custom DNS server
+dig @{ip} -p {port} {host}

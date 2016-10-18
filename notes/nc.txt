@@ -1,0 +1,5 @@
+# Start a ping server that reponds with a custom message over the wire
+nc -p ${port} -ll -e echo "ayylmao"
+
+# Ping the server that responds with custom message over the wire
+echo "yo" | nc ${host} ${ip}
