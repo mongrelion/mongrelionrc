@@ -9,3 +9,6 @@ ffmpeg -ss seek_time -i input.mp4 -t duration -c copy output.mp4
 # - scale=800:-1
 #   Scales the video to X=800 Y=calculated (-1 triggers calculation)
 ffmpeg -i input.mp4 -vf scale=800:-1 output.mp4
+
+# Convert from whatever audio format to mp3
+ffmpeg -i input.m4a output.mp3
