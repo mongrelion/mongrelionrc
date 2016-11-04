@@ -23,9 +23,6 @@ PS1=" $SYM "
 # Vi mode
 set -o vi
 
-# Aliases
-alias todo="ag TODO"
-
 # Ansible
 alias ap="ansible-playbook"
 
