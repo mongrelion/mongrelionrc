@@ -11,3 +11,6 @@
 
 # or
 - debug: var=foo["bar"].keys()
+
+# Execute a task when the remote host has no python installed
+- raw: apt-get install -y python

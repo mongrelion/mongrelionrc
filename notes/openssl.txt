@@ -1,0 +1,5 @@
+# Encrypt plain text file with AEC cipher
+openssl enc -aes-256-cbc -in in.txt -out out.txt
+
+# Decrypt plain text file with AEC cipher
+openssl enc -d -aes-256-cbc -in out.txt

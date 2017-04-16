@@ -9,3 +9,6 @@ git diff HEAD..master --name-only
 
 # Get last commit hash
 git log -1 --pretty=%H
+
+# Show commit differences between current branch and master
+git log master..HEAD

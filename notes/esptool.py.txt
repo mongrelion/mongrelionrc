@@ -1,0 +1,2 @@
+# Write the NodeMCU firmware to an ESP8266 module
+esptool.ty -p /dev/tty0.serial write_flash -fm qio 0x00000 nodemcu_integer_mongrelion_20161226-2235.bin
