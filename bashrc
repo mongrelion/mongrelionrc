@@ -1,24 +1,19 @@
 export SHELL=/usr/local/bin/bash
 export LANG="en_US.UTF-8"
 export EDITOR='vim'
-#export GOROOT=~/code/os/google/go
-export GOPATH=/usr/local/opt/go
+export GOPATH=~/code/go
 export NOTESDIR=~/code/personal/mongrelionrc/notes/
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$PATH:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/usr/local/opt/go/libexec/bin"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export GTK_PATH=/usr/local/lib/gtk-2.0
 
-SYM="~[👾 ]~"
+SYM="x"
 PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
 
-# Prompt theme.
-function ps1 {
-  echo " $PS1SYM "
-}
-#PS1=`ps1`
-PS1=" $SYM "
+PS1=" $PS1SYM "
 
 # Vi mode
 set -o vi
@@ -37,6 +32,7 @@ alias elc="git rebase -i HEAD^"
 alias amend="git commit --amend"
 alias rc="git rebase --continue"
 alias pull="git pull --rebase"
+alias lc="git lg -1"
 
 alias l="ls -laG"
 
@@ -44,9 +40,15 @@ alias motd="fortune | cowsay | lolcat"
 
 alias v=vagrant
 
+# Docker
 alias d="docker"
 alias dc="docker-compose"
+
+# Terraform
 alias t="terraform"
+
+# Nomad
+alias nas="watch -n0.5 nomad alloc-status"
 
 bind -m vi-insert "\C-l.":clear-screen
 
@@ -90,4 +92,4 @@ _cli_bash_autocomplete() {
      return 0
  }
 
- complete -F _cli_bash_autocomplete notes
+complete -F _cli_bash_autocomplete notes
