@@ -13,6 +13,11 @@ Plugin 'vim-scripts/snipMate'
 Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
 Plugin 'croaker/mustang-vim'
+Plugin 'tomasr/molokai'
+Plugin 'hashivim/vim-terraform'
+Plugin 'cespare/vim-toml'
+
+let g:molokai_original = 1
 
 call vundle#end()
 
@@ -75,7 +80,7 @@ set nowritebackup
 set noswapfile
 
 " Colorscheme
-colo mustang
+colo molokai
 
 " Trigger CommandP
 map <C-p> :CtrlP<CR>
