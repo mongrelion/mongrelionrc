@@ -12,3 +12,10 @@ git log -1 --pretty=%H
 
 # Show commit differences between current branch and master
 git log master..HEAD
+
+# For a git submodule, clone it
+# For example, a common case is a docs/ directory as a submodule:
+git submodule update --init docs/
+
+# Compare two files that are not in a git repository
+git diff --no-index /path/to/file1 /path/to/file2
