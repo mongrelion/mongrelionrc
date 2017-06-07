@@ -3,3 +3,6 @@ openssl enc -aes-256-cbc -in in.txt -out out.txt
 
 # Decrypt plain text file with AEC cipher
 openssl enc -d -aes-256-cbc -in out.txt
+
+# Generate file digest (md5, sha256, etc)
+openssl dgst -md5 /path/to/file
