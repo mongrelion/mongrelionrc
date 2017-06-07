@@ -50,6 +50,10 @@ alias t="terraform"
 # Nomad
 alias nas="watch -n0.5 nomad alloc-status"
 
+# Kubernetes
+alias kc="kubectl"
+alias mk="minikube"
+
 bind -m vi-insert "\C-l.":clear-screen
 
 # color for man pages
