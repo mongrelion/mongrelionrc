@@ -40,6 +40,7 @@
   excludesfile = /Users/mongrelion/.gitignore_global
   editor = /usr/local/bin/vim
   rerere = enabled
+	quotepath = false
 
 [mergetool]
   keepBackup = true
@@ -67,3 +68,5 @@
 
 [push]
   default = simple
+[pull]
+  rebase = true
