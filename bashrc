@@ -32,9 +32,8 @@ alias elc="git rebase -i HEAD^"
 alias amend="git commit --amend"
 alias rc="git rebase --continue"
 alias pull="git pull --rebase"
-alias lc="git lg -1"
 
-alias l="ls -laG"
+alias l="tree -L 1"
 
 alias motd="fortune | cowsay | lolcat"
 
@@ -51,7 +50,7 @@ alias t="terraform"
 alias nas="watch -n0.5 nomad alloc-status"
 
 # Kubernetes
-alias kc="kubectl"
+alias k="kubectl"
 alias mk="minikube"
 
 bind -m vi-insert "\C-l.":clear-screen
