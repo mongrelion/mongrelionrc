@@ -126,3 +126,5 @@ if executable('ag')
 else
   let g:ctrlp_show_hidden = 1
 endif
+
+" Macro to replace tabs for double spaces
