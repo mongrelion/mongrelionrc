@@ -1,0 +1,10 @@
+# MiniFPV camera pinout
+Cable order on the camera:
+
+LTR:
+  White - Black - Yellow - Red
+
+  Yellow <-> Video
+  White  <-> Audio
+  Red    <-> VCC
+  Black  <-> GND
