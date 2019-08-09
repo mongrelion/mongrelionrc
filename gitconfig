@@ -37,7 +37,7 @@
   pr  = pull --rebase
   f   = fetch
 [core]
-  excludesfile = /Users/mongrelion/.gitignore_global
+  excludesfile = /Users/mongrelion/.gitignore
   editor = /usr/local/bin/vim
   rerere = enabled
 	quotepath = false
