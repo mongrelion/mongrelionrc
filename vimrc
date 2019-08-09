@@ -26,6 +26,11 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Show line numbers
 set number
 
+set encoding=utf8
+
+" Fancy file autocompletion
+set wildmenu
+
 " Tabs
 set expandtab
 set shiftwidth=2
