@@ -87,6 +87,8 @@ set noswapfile
 " Colorscheme
 colo molokai
 
+set colorcolumn=81
+
 " Trigger CommandP
 map <C-p> :CtrlP<CR>
 
@@ -109,6 +111,7 @@ inoremap jj <Esc>
 " Tabs instead of spaces for Go.
 au FileType go setl tabstop=2 noexpandtab shiftwidth=2 softtabstop=2
 au FileType c setl tabstop=2 shiftwidth=2 softtabstop=2
+au BufEnter *.hcl,*.nomad set ft=config
 
 " Hide scrollbars
 if has("gui_running")
