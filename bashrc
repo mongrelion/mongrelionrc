@@ -19,23 +19,15 @@ PS1=" $PS1SYM "
 set -o vi
 
 # Ansible
-alias ap="ansible-playbook"
 
 # Git aliases
 alias cm="git commit -v"
 alias gs="git st"
 alias gdf="git df"
-alias b="git blame"
-alias dfc="git df --cached"
-alias mycommits="git log --author=Carlos"
-alias elc="git rebase -i HEAD^"
 alias amend="git commit --amend"
 alias rc="git rebase --continue"
-alias pull="git pull --rebase"
 
 alias l="tree -L 1"
-
-alias motd="fortune | cowsay | lolcat"
 
 alias v=vagrant
 
@@ -45,9 +37,6 @@ alias dc="docker-compose"
 
 # Terraform
 alias t="terraform"
-
-# Nomad
-alias nas="watch -n0.5 nomad alloc-status"
 
 # Kubernetes
 alias k="kubectl"
