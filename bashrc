@@ -18,13 +18,14 @@ PS1=" $PS1SYM "
 # Vi mode
 set -o vi
 
-# Ansible
+alias tm="tmux"
 
 # Git aliases
 alias cm="git commit -v"
 alias gs="git st"
 alias gdf="git df"
-alias amend="git commit --amend"
+alias gp="git pull"
+alias amend="git commit --amend -C HEAD"
 alias rc="git rebase --continue"
 
 alias l="tree -L 1"
@@ -35,12 +36,64 @@ alias v=vagrant
 alias d="docker"
 alias dc="docker-compose"
 
-# Terraform
-alias t="terraform"
 
 # Kubernetes
-alias k="kubectl"
 alias mk="minikube"
+alias kg="kubectl get"
+
+# Terraform
+#alias t="terraform"
+function t {
+  case "$1" in
+    "yolo")
+      terraform apply -auto-approve
+      ;;
+    "ws")
+      terraform workspace $@
+      ;;
+    *)
+      terraform $@
+      ;;
+  esac
+}
+
+function k {
+  case "$1" in
+    "get-contexts")
+      k_get_contexts
+      ;;
+    "use-context")
+      k_use_context $2
+      ;;
+    *)
+      kubectl $@
+      ;;
+  esac
+}
+
+function k_get_contexts {
+  current=$(kubectl config view -o json | jq -r '."current-context"')
+  for context in $(kubectl config view -o json | jq -r .contexts[].name)
+  do
+    declare out
+    if [ "${context}" == "${current}" ]
+    then
+      out="${context} (current)"
+    else
+      out="${context}"
+    fi
+    echo "${out}"
+  done
+}
+
+function k_use_context {
+  kubectl config use-context $1
+}
+
+
+alias py="source ~/.venv/bin/activate"
+
+alias update="brew update && brew upgrade"
 
 bind -m vi-insert "\C-l.":clear-screen
 
