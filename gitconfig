@@ -36,35 +36,19 @@
   pl  = log --pretty=format:'%Cgreen%h %Creset%s'
   pr  = pull --rebase
   f   = fetch
+  who = blame
+
 [core]
   excludesfile = /Users/mongrelion/.gitignore
-  editor = /usr/local/bin/vim
+  editor = /usr/local/bin/nvim
   rerere = enabled
-	quotepath = false
+  quotepath = false
+
+[merge]
+  tool = vimdiff
 
 [mergetool]
   keepBackup = true
-
-[diff]
-  tool = diffmerge
-
-[difftool "diffmerge"]
-  cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
-
-[merge]
-  tool = diffmerge
-
-[mergetool "diffmerge"]
-  cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-  trustExitCode = true
-
-[difftool "sourcetree"]
-  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
-  path =
-
-[mergetool "sourcetree"]
-  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-  trustExitCode = true
 
 [push]
   default = simple
