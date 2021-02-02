@@ -29,6 +29,7 @@ alias amend="git commit --amend -C HEAD"
 alias rc="git rebase --continue"
 
 alias l="tree -L 1"
+alias vim=nvim
 
 alias v=vagrant
 
