@@ -44,6 +44,9 @@
   rerere = enabled
   quotepath = false
 
+[init]
+	defaultBranch = main
+
 [merge]
   tool = vimdiff
 
