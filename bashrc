@@ -139,3 +139,14 @@ _cli_bash_autocomplete() {
  }
 
 complete -F _cli_bash_autocomplete notes
+
+function _init_ssh_agent {
+  count=$(ps aux | ag ssh-agent | wc -l)
+  if [ "${count}" == 1 ]
+  then
+    eval `ssh-agent`
+    ssh-add
+  fi
+}
+
+_init_ssh_agent
