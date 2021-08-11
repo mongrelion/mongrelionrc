@@ -4,6 +4,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'preservim/nerdtree'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 " [ UI ]
@@ -28,6 +30,9 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Anything you copy
+set clipboard+=unnamedplus
+
 " Search stuff
 " Case insensitive search
 set ignorecase
@@ -39,8 +44,15 @@ set hlsearch
 set incsearch
 
 " [ Key Mappings ]
+" Leader key /o\
+let mapleader = " "
 " Press Spacebar for cleaning highlighted search matches.
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <Leader> <Space> :nohlsearch<Bar>:echo<CR>
+
+" GitMessenger mappings
+let g:git_messenger_no_default_mappings = 1
+let g:git_messenger_always_into_popup = 1
+map <Leader>g <Plug>(git-messenger)
 
 " Run Terraform formatting on the currently open file
 map þ :! terraform fmt %<CR><CR>
