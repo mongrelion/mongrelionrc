@@ -48,12 +48,16 @@
 	defaultBranch = main
 
 [merge]
-  tool = vimdiff
+  tool = nvim
+
+[mergetool "nvim"]
+  cmd = nvim -d \"$MERGED\"
 
 [mergetool]
-  keepBackup = true
+  prompt = false
 
 [push]
   default = simple
+
 [pull]
   rebase = true
