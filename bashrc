@@ -1,13 +1,9 @@
 export SHELL=/usr/local/bin/bash
 export LANG="en_US.UTF-8"
 export EDITOR='vim'
-export GOPATH=~/code/go
-export NOTESDIR=~/code/personal/mongrelionrc/notes/
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$PATH:/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$HOME/code/com/gv/platypus/scripts:$PATH"
 export GTK_PATH=/usr/local/lib/gtk-2.0
 
 SYM="x"
@@ -27,6 +23,7 @@ alias gdf="git df"
 alias gp="git pull"
 alias amend="git commit --amend -C HEAD"
 alias rc="git rebase --continue"
+alias lg="lazygit"
 
 alias l="tree -L 1"
 alias vim=nvim
@@ -37,60 +34,16 @@ alias v=vagrant
 alias d="docker"
 alias dc="docker-compose"
 
-
 # Kubernetes
 alias mk="minikube"
 alias kg="kubectl get"
+alias kx="kubectx"
+alias dr="docker run --rm -it"
 
 # Terraform
-#alias t="terraform"
-function t {
-  case "$1" in
-    "yolo")
-      terraform apply -auto-approve
-      ;;
-    "ws")
-      terraform workspace $@
-      ;;
-    *)
-      terraform $@
-      ;;
-  esac
-}
+alias t="terraform"
 
-function k {
-  case "$1" in
-    "get-contexts")
-      k_get_contexts
-      ;;
-    "use-context")
-      k_use_context $2
-      ;;
-    *)
-      kubectl $@
-      ;;
-  esac
-}
-
-function k_get_contexts {
-  current=$(kubectl config view -o json | jq -r '."current-context"')
-  for context in $(kubectl config view -o json | jq -r .contexts[].name)
-  do
-    declare out
-    if [ "${context}" == "${current}" ]
-    then
-      out="${context} (current)"
-    else
-      out="${context}"
-    fi
-    echo "${out}"
-  done
-}
-
-function k_use_context {
-  kubectl config use-context $1
-}
-
+alias ag=rg
 
 alias py="source ~/.venv/bin/activate"
 
@@ -113,11 +66,6 @@ man() {
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-function tri {
-  tree -L $1 $2
-}
-export -f tri
 
 function regserver {
   ssh-keyscan -t rsa $1 >> ~/.ssh/known_hosts
@@ -150,3 +98,9 @@ function _init_ssh_agent {
 }
 
 _init_ssh_agent
+
+function ohyeah {
+  printf "8==========|D"; while true; do printf "~"; sleep 1; done
+}
+
+source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.bash
