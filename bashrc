@@ -1,4 +1,3 @@
-export SHELL=/usr/local/bin/bash
 export LANG="en_US.UTF-8"
 export EDITOR='vim'
 export PATH="/usr/local/bin:$PATH"
@@ -36,6 +35,7 @@ alias dc="docker-compose"
 
 # Kubernetes
 alias mk="minikube"
+alias k="kubectl"
 alias kg="kubectl get"
 alias kx="kubectx"
 alias dr="docker run --rm -it"
@@ -46,8 +46,6 @@ alias t="terraform"
 alias ag=rg
 
 alias py="source ~/.venv/bin/activate"
-
-alias update="brew update && brew upgrade"
 
 bind -m vi-insert "\C-l.":clear-screen
 
@@ -62,10 +60,6 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 
 function regserver {
   ssh-keyscan -t rsa $1 >> ~/.ssh/known_hosts
@@ -103,4 +97,18 @@ function ohyeah {
   printf "8==========|D"; while true; do printf "~"; sleep 1; done
 }
 
-source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.bash
+
+if [ "$(uname -o)" == "GNU/Linux" ]
+then
+  export SHELL=/bin/bash
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+else
+  export SHELL=/usr/local/bin/bash
+  . $(brew --prefix)/etc/bash_completion
+  source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.bash
+  alias update="brew update && brew upgrade"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
