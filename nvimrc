@@ -43,11 +43,6 @@ set.incsearch = true
 -- UI
 vim.cmd('syntax enable')
 set.nu = true
-set.termguicolors = true
-
-vim.g['tokyonight_style'] = 'storm' -- available: night, storm
-vim.g['tokyonight_enable_italic'] = 1
-vim.cmd('colorscheme tokyonight')
 
 -- [ Key Mappings ]
 -- Leader key /o\
@@ -147,3 +142,13 @@ if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+" Setting colorscheme options from lua is giving odd behaviour.
+" When nvim starts, the colors are off from the actual colorscheme but calling
+" :colorscheme tokyonight again fixes the issue.
+" By moving the setting out of lua and into vimscript, the issue is gone :(
+" So porting this to lua is going to take a little more investigation.
+set termguicolors
+let g:tokyonight_style = 'storm'
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
