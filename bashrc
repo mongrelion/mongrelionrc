@@ -47,6 +47,8 @@ alias ag=rg
 
 alias py="source ~/.venv/bin/activate"
 
+alias ts="npx ts-node"
+
 bind -m vi-insert "\C-l.":clear-screen
 
 # color for man pages
