@@ -19,12 +19,6 @@ set.shiftwidth = 2
 set.softtabstop = 2
 set.tabstop = 2
 
--- No backups
--- TODO: Fix. Options not available in nvim lua
---set.nobackup = true
---set.nowritebackup = true
---set.noswapfile = true
-
 -- Anything you copy
 set.clipboard = set.clipboard + 'unnamedplus'
 
@@ -160,3 +154,9 @@ set termguicolors
 let g:tokyonight_style = 'storm'
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
+
+" No backups
+" TODO: Fix. Options not available in nvim lua
+set nobackup
+set nowritebackup
+set noswapfile
