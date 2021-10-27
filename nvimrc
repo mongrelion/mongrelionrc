@@ -64,16 +64,14 @@ map('', '<C-k>', ':q<CR>', {})
 -- Press ENTER in navigation mode to save the current file.
 map('n', '<Enter>', ':w<CR>', {noremap = true})
 
--- Telescope mappings
+-- Fuzzy search mappings
 map('', '<C-p>', ':call fzf#run(fzf#wrap({}))<CR>', {})
 map('', '<C-g>', ':Rg<CR>', {})
--- map('', '<C-g>', ':Telescope live_grep<CR>', {})
 
-map('', '<Leader>f', ':! terraform fmt %<CR><CR>', {})
-
+-- Make currently open file executable
 map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 
--- Set sytanx for kube config file
+-- Set sytanx for terraform state files
 vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 
 -- Set sytanx for kube config file
@@ -91,12 +89,13 @@ local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('i', '<C-Tab>', '<Cmd>lua vim.lsp.buf.completion()<CR>', opts)
   buf_set_keymap('n', '<space>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -154,9 +153,14 @@ set termguicolors
 let g:tokyonight_style = 'storm'
 let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
+highlight Normal guibg=none
+set bg=dark
+highlight NonText guibg=none
 
 " No backups
 " TODO: Fix. Options not available in nvim lua
 set nobackup
 set nowritebackup
 set noswapfile
+
+set rtp+=/usr/local/opt/fzf
