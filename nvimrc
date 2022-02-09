@@ -6,6 +6,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 lua <<EOF
@@ -150,9 +151,10 @@ endif
 " By moving the setting out of lua and into vimscript, the issue is gone :(
 " So porting this to lua is going to take a little more investigation.
 set termguicolors
-let g:tokyonight_style = 'storm'
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+" let g:tokyonight_style = 'storm'
+" let g:tokyonight_enable_italic = 1
+" colorscheme tokyonight
+colorscheme nord
 highlight Normal guibg=none
 set bg=dark
 highlight NonText guibg=none
