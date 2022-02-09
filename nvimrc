@@ -7,6 +7,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 
 lua <<EOF
@@ -72,6 +73,8 @@ map('', '<C-g>', ':Rg<CR>', {})
 -- Make currently open file executable
 map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 
+-- Launch lazygit
+map('', '<Leader>lg', ':LazyGit<CR>', {})
 -- Set sytanx for terraform state files
 vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 
