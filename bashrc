@@ -107,6 +107,7 @@ then
   source /usr/share/fzf/key-bindings.bash
   source /opt/asdf-vm/asdf.sh
   source /usr/share/bash-completion/completions/asdf
+  source /usr/share/bash-completion/completions/git
 else
   export SHELL=/usr/local/bin/bash
   . $(brew --prefix)/etc/bash_completion
