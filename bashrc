@@ -105,6 +105,8 @@ if [ "$(uname -o)" == "GNU/Linux" ]
 then
   export SHELL=/bin/bash
   source /usr/share/fzf/key-bindings.bash
+  source /opt/asdf-vm/asdf.sh
+  source /usr/share/bash-completion/completions/asdf
 else
   export SHELL=/usr/local/bin/bash
   . $(brew --prefix)/etc/bash_completion
