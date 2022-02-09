@@ -4,6 +4,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/code/com/gv/platypus/scripts:$PATH"
 export GTK_PATH=/usr/local/lib/gtk-2.0
+export RIPGREP_CONFIG_PATH=${HOME}/code/personal/mongrelionrc/ripgrep
 
 SYM="x"
 PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
