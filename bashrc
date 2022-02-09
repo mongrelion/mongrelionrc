@@ -104,7 +104,7 @@ function ohyeah {
 if [ "$(uname -o)" == "GNU/Linux" ]
 then
   export SHELL=/bin/bash
-  source /usr/share/doc/fzf/examples/key-bindings.bash
+  source /usr/share/fzf/key-bindings.bash
 else
   export SHELL=/usr/local/bin/bash
   . $(brew --prefix)/etc/bash_completion
