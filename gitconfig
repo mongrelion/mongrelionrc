@@ -40,7 +40,7 @@
 
 [core]
   excludesfile = /Users/mongrelion/.gitignore
-  editor = /usr/local/bin/nvim
+  editor = /usr/bin/nvim
   rerere = enabled
   quotepath = false
 
