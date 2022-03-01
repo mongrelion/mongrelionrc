@@ -24,6 +24,7 @@ bspc config gapless_monocle      true
 # Send programs to theme desktops
 bspc rule -a firefox desktop=^3
 bspc rule -a Mailspring desktop=^5
+bspc rule -a Thunderbird desktop=^5
 bspc rule -a Slack desktop=^4
 bspc rule -a "Microsoft Teams - Preview" desktop=^4
 bspc rule -a Bitwarden desktop=^6
