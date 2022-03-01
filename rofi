@@ -1,0 +1,6 @@
+configuration {
+	modi: "run,drun";
+  font: "Hack 9";
+}
+
+@theme "dracula.rasi"
