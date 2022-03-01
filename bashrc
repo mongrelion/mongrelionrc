@@ -86,12 +86,16 @@ _cli_bash_autocomplete() {
 complete -F _cli_bash_autocomplete notes
 
 function _init_ssh_agent {
-  count=$(ps aux | ag ssh-agent | wc -l)
-  if [ "${count}" == 1 ]
+  check=$(pidof gpg-agent)
+  if [ "${check}" == "" ]
   then
-    eval `ssh-agent`
-    ssh-add
+    gpg-agent --version 2>&1 > /dev/null
   fi
+
+  export GPG_TTY=$(tty)
+  unset SSH_AGENT_PID
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  echo UPDATESTARTUPTTY | gpg-connect-agent > /dev/null
 }
 
 _init_ssh_agent
