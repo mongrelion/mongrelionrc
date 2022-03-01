@@ -1,13 +1,16 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'ghifarit53/tokyonight-vim'
 Plug 'preservim/nerdtree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'kdheepak/lazygit.nvim'
+
+" themes
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 lua <<EOF
@@ -75,6 +78,7 @@ map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 
 -- Launch lazygit
 map('', '<Leader>lg', ':LazyGit<CR>', {})
+
 -- Set sytanx for terraform state files
 vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 
@@ -82,7 +86,7 @@ vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 vim.cmd('autocmd BufNewFile,BufRead ~/.kube/config set syntax=yaml')
 
 local lsp = require('lspconfig')
-local nodebinpath = os.getenv('HOME') .. '/.nvm/versions/node/v14.17.1/bin'
+local nodebinpath = os.getenv('HOME') .. '/.nvm/versions/node/v14.16.1/bin'
 local tsserverbin = nodebinpath .. '/typescript-language-server'
 local yamllsbin = nodebinpath .. '/yaml-language-server'
 
@@ -157,10 +161,11 @@ set termguicolors
 " let g:tokyonight_style = 'storm'
 " let g:tokyonight_enable_italic = 1
 " colorscheme tokyonight
-colorscheme nord
-highlight Normal guibg=none
-set bg=dark
-highlight NonText guibg=none
+"colorscheme nord
+"highlight Normal guibg=none
+"set bg=dark
+"highlight NonText guibg=none
+colorscheme dracula
 
 " No backups
 " TODO: Fix. Options not available in nvim lua
