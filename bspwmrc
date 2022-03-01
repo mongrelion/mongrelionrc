@@ -8,9 +8,11 @@ xsetroot -cursor_name left_ptr &
 feh --bg-scale ~/pics/wallpapers/wallhaven-o3xrm9.jpg &
 
 # Configure workspaces
-# NOTE: When changing HDMI ports configuring the monitor breaks
-# TODO: Detect monitor programmatically
-bspc monitor HDMI-A-0 -d misc dev www im email other
+# Assume that we always and only have one monitor plugged. If I ever use more than
+# one screen I can update the next line.
+monitor=$(bspc query --monitors --names | tail -1)
+
+bspc monitor "${monitor}" -d misc dev www im email other
 
 bspc config border_width 2
 bspc config window_gap   5
