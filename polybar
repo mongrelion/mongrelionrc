@@ -18,28 +18,30 @@
 ;==========================================================
 
 ; Nord theme
-[colors]
-background = #2E3440
-buffer = #4c566a
-foreground = #D8DEE9
-nord6 = #ECEFF4
-nord7 = #8FBCBB
-nord8 = #88C0D0
-nord9 = #81A1C1
-urgent = #BF616A
-warning = #D08770
-notify = #EBCB8B
-success = #A3BE8C
-function = #B48EAD
-
 ; [colors]
-; background = #000
-; background-alt = #000
-; foreground = #dfdfdf
-; foreground-alt = #555
-; primary = #ffb52a
-; secondary = #e60053
-; alert = #bd2c40
+; background = #2E3440
+; buffer = #4c566a
+; foreground = #D8DEE9
+; nord6 = #ECEFF4
+; nord7 = #8FBCBB
+; nord8 = #88C0D0
+; nord9 = #81A1C1
+; urgent = #BF616A
+; warning = #D08770
+; notify = #EBCB8B
+; success = #A3BE8C
+; function = #B48EAD
+
+; Dracula theme
+[colors]
+background = #282A36
+foreground = #F8F8F2
+urgent     = #FF5555
+warning    = #FFB86C
+notify     = #F1FA8C
+success    = #50FA7B
+function   = #BD93F9
+buffer     = #4C566A
 
 [global/wm]
 margin-top = 0
@@ -66,11 +68,7 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 2
 
-# font-0 = Hack:size=8
-# font-1 = Hack:size=8
-# font-2 = Hack:size=8
-
-font-0 = Source Code Pro Medium:size=8
+font-0 = Source Code Pro:size=8
 font-1 = Font Awesome 6 Free Solid:size=8
 font-2 = Font Awesome 6 Brands Regular:size=8
 
@@ -79,7 +77,7 @@ modules-right = pulseaudio memory cpu cputemp gputemp gpufanspeed wlan date
 
 tray-position = right
 tray-padding  = 2
-;tray-background = #0063ff
+tray-background = ${colors.buffer}
 
 wm-restack = bspwm
 ;override-redirect = true
@@ -98,8 +96,8 @@ type = internal/bspwm
 fuzzy-match = true
 
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.nord7}
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.success}
 label-focused-padding = 2
 
 label-occupied = %icon%
@@ -188,16 +186,16 @@ label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = "M muted"
-label-muted-foreground = #666
+label-muted-foreground = ${colors.warning}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.success}
+bar-volume-foreground-1 = ${colors.success}
+bar-volume-foreground-2 = ${colors.success}
+bar-volume-foreground-3 = ${colors.success}
+bar-volume-foreground-4 = ${colors.success}
+bar-volume-foreground-5 = ${colors.warning}
+bar-volume-foreground-6 = ${colors.urgent}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -205,7 +203,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.buffer}
 
 [module/cputemp]
 type = internal/temperature
