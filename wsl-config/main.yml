@@ -1,0 +1,168 @@
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  vars:
+    packages:
+      - base-devel
+      - docker
+      - docker-buildx
+      - helix
+      - zellij
+      - neofetch
+      - man
+      - git
+      - curl
+      - sudo
+      - make
+      - bat
+      - ripgrep
+      - procs
+      - btop
+      - openssh
+      - fzf
+      - lazygit
+      - strace
+      - k9s
+      - aws-cli-v2
+      - github-cli
+      - openbsd-netcat
+      - bind
+      - jq
+      - parallel
+      - p7zip
+      - fd
+      - bc # required for compiling WSL kernel
+      - pahole # required for compiling WSL kernel
+
+  tasks:
+    - name: ensure packages are present
+      package:
+        name: "{{ packages }}"
+        state: present
+
+    - name: ensure group carlos is present
+      group:
+        name: carlos
+        state: present
+
+    - name: ensure user carlos is present
+      user:
+        name: carlos
+        group: carlos
+        state: present
+
+    - name: ensure helix alias is present
+      file:
+        src: /usr/bin/helix
+        path: /usr/bin/hx
+        state: link
+
+    - name: ensure zellij alias is present
+      file:
+        src: /usr/bin/zellij
+        path: /usr/bin/zj
+        state: link
+
+    - name: ensure sudo is configured
+      copy:
+        src: sudoers
+        dest: /etc/sudoers
+
+    - name: ensure wsl is configured
+      copy:
+        src: wsl.conf
+        dest: /etc/wsl.conf
+
+    - name: ensure resolv.conf is configured
+      copy:
+        src: resolv.conf
+        dest: /etc/resolv.conf
+
+    - name: ensure docker is enabled and started
+      service:
+        name: docker
+        enabled: true
+        state:  started
+      when: false
+
+    - name: ensure user carlos can run docker commands
+      user:
+        name: carlos
+        append: true
+        groups: docker
+
+    - name: check if yay is installed
+      shell: "test yay || echo doit"
+      changed_when: no
+      register: yaycheck
+
+    - name: define if yay must be installed
+      set_fact:
+        must_install_yay: "{{ yaycheck.stdout == 'doit' }}"
+      changed_when: no
+
+    # yay installation block
+    - block:
+        - name: clone yay repo
+          git:
+            repo: https://aur.archlinux.org/yay.git
+            dest: /tmp/yay
+            depth: 1
+        - name: install yay
+          command:
+            cmd: makepkg -si --noconfirm --noprogressbar
+            chdir: /tmp/yay
+
+        - name: clean up yay temp dir
+          file:
+            path: /tmp/yay
+            state: absent
+
+      when: must_install_yay
+      become: yes
+      become_user: carlos
+
+    - block:
+      - name: ensure that code directory structure is present
+        shell: "mkdir -p /home/carlos/code/{os,personal,com}"
+
+      - name: check if configuration repository is present
+        command: test /home/carlos/code/personal/mongrelionrc
+        register: rccheck
+        changed_when: false
+
+      - name: check if configuration repository should be cloned
+        set_fact:
+          cloneconfig: "{{ rccheck.rc != 0 }}"
+        changed_when: false
+
+      - name: ensure configuration repository is present
+        git:
+          repo: https://github.com/mongrelion/mongrelionrc
+          dest: /home/carlos/code/personal/mongrelionrc
+        when: cloneconfig
+
+      - name: ensure bashrc file is linked
+        file:
+          src: /home/carlos/code/personal/mongrelionrc/bashrc
+          path: /home/carlos/.bashrc
+          state: link
+
+      - name: ensure gitconfig file is linked
+        file:
+          src: /home/carlos/code/personal/mongrelionrc/gitconfig
+          path: /home/carlos/.gitconfig
+          state: link
+
+      - name: ensure helix files are linked
+        file:
+          src: /home/carlos/code/personal/mongrelionrc/helix/{{ item }}
+          path: /home/carlos/.config/helix/{{ item }}
+          state: link
+        loop:
+          - config.toml
+          - languages.toml
+
+      become: yes
+      become_user: carlos

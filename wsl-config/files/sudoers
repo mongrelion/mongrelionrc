@@ -1,0 +1,2 @@
+root   ALL=(ALL:ALL) ALL
+carlos ALL=(ALL:ALL) NOPASSWD: ALL
