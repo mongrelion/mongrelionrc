@@ -1,0 +1,23 @@
+theme = "ayu_mirage"
+
+[editor]
+true-color = true
+cursorline = true
+completion-trigger-len = 1
+rulers = [80]
+color-modes = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+"ret" = ":w"
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
