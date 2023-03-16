@@ -86,12 +86,6 @@ _cli_bash_autocomplete() {
 complete -F _cli_bash_autocomplete notes
 
 function _init_ssh_agent {
-  check=$(pidof gpg-agent)
-  if [ "${check}" == "" ]
-  then
-    gpg-agent --version 2>&1 > /dev/null
-  fi
-
   export GPG_TTY=$(tty)
   unset SSH_AGENT_PID
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
