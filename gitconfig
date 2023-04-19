@@ -1,6 +1,6 @@
 [user]
   name = Carlos León
-  email = mail@carlosleon.info
+  email = mongrelion@gmail.com
 
 [color]
   ui = auto
@@ -40,7 +40,7 @@
 
 [core]
   excludesfile = /Users/mongrelion/.gitignore
-  editor = /usr/bin/nvim
+  editor = hx
   rerere = enabled
   quotepath = false
 
