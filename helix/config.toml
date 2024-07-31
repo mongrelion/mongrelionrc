@@ -18,6 +18,7 @@ hidden = false
 
 [keys.normal]
 "ret" = ":w"
+C-k = ":q"
 
 [keys.insert]
 j = { k = "normal_mode" } # Maps `jk` to exit insert mode

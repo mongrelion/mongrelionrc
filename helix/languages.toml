@@ -1,0 +1,12 @@
+[[language]]
+name = "hcl"
+file-types = ["hcl", "tf", "nomad", "tfvars"]
+#language-server = { command = "terraform-ls", args = ["serve"], language-id = "terraform" }
+
+[[language]]
+name = "yaml"
+file-types = ["yml", "yaml", { suffix = ".kube/config" }]
+
+# [[language]]
+# name = "bash"
+# language-server = { command = "docker", args = ["run", "-i", "lspcontainers/bash-language-server"] }
