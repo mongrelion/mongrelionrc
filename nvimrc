@@ -1,8 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'preservim/nerdtree'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'rhysd/git-messenger.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kdheepak/lazygit.nvim'
@@ -11,6 +9,11 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
+Plug 'David-Kunz/gen.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 lua <<EOF
@@ -25,7 +28,8 @@ set.softtabstop = 2
 set.tabstop = 2
 
 -- Anything you copy
-set.clipboard = set.clipboard + 'unnamedplus'
+-- set.clipboard = set.clipboard + 'unnamedplus'
+set.clipboard = 'unnamedplus'
 
 -- Search stuff
 -- Case insensitive search
@@ -54,11 +58,6 @@ map('n', '<Leader><Space>', ':nohlsearch<Bar>:echo<CR>', {noremap = true})
 -- Toggle NERDTree
 map('', '<Leader>n', ':NERDTreeToggle<CR>', {})
 
--- GitMessenger mappings
-vim.g['git_messenger_no_default_mappings'] = 1
-vim.g['git_messenger_always_into_popup'] = 1
-map('', '<Leader>g', '<Plug>(git-messenger)', {})
-
 -- My CapsLock key is remapped to Ctrl and I'm too lazy to go all the way to
 -- the ESC key, so I remap that to just pressing twice jj
 map('i', 'jj', '<Esc>', {noremap = true})
@@ -79,6 +78,19 @@ map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 -- Launch lazygit
 map('', '<Leader>lg', ':LazyGit<CR>', {})
 
+
+-- Telescope key bindings
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+require("telescope").load_extension("ui-select")
+
+-- AI assistant key bindings
+vim.keymap.set('v', '<leader>a', ':Gen <CR>', {})
+vim.keymap.set('n', '<leader>a', ':Gen <CR>', {})
+
 -- Set sytanx for terraform state files
 vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 
@@ -86,7 +98,7 @@ vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 vim.cmd('autocmd BufNewFile,BufRead ~/.kube/config set syntax=yaml')
 
 local lsp = require('lspconfig')
-local nodebinpath = os.getenv('HOME') .. '/.nvm/versions/node/v14.16.1/bin'
+local nodebinpath = os.getenv('HOME') .. '/.asdf/shims'
 local tsserverbin = nodebinpath .. '/typescript-language-server'
 local yamllsbin = nodebinpath .. '/yaml-language-server'
 
