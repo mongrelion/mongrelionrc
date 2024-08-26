@@ -7,7 +7,9 @@
       - base-devel
       - docker
       - docker-buildx
+      - docker-compose
       - helix
+      - neovim
       - zellij
       - neofetch
       - man
@@ -29,11 +31,33 @@
       - openbsd-netcat
       - bind
       - jq
+      - fx
       - parallel
       - p7zip
+      - unzip
       - fd
+      - tree
+      - pkgfile
       - bc # required for compiling WSL kernel
       - pahole # required for compiling WSL kernel
+      - gcr # for pinentry-gnome3
+      - openconnect # vpn
+      - kubectx
+      - terraform-ls
+      - graphviz
+      - shellcheck
+      - rsync
+      - yt-dlp
+      - python-lsp-server
+      - yapf
+      - python-rope
+      - python-pyflakes
+      - iperf3
+      - nmap
+      - xsel # neovim + system clipboard interaction
+      - asdf-vm
+      - poppler # to merge PDF files
+      - meld # beautiful diff tool
 
   tasks:
     - name: ensure packages are present
@@ -102,6 +126,11 @@
         must_install_yay: "{{ yaycheck.stdout == 'doit' }}"
       changed_when: no
 
+    - name: ensure journald is configured
+      copy:
+        src: journald.conf
+        dest: /etc/systemd/journald.conf
+
     # yay installation block
     - block:
         - name: clone yay repo
@@ -155,7 +184,7 @@
           path: /home/carlos/.gitconfig
           state: link
 
-      - name: ensure helix files are linked
+      - name: ensure helix is configured
         file:
           src: /home/carlos/code/personal/mongrelionrc/helix/{{ item }}
           path: /home/carlos/.config/helix/{{ item }}
@@ -163,6 +192,17 @@
         loop:
           - config.toml
           - languages.toml
+
+      - name: ensure zellij config dir is present
+        file:
+          path: /home/carlos/.config/zellij
+          state: directory
+
+      - name: ensure zellij is configured
+        file:
+          src: /home/carlos/code/personal/mongrelionrc/zellij.kdl
+          path: /home/carlos/.config/zellij/config.kdl
+          state: link
 
       become: yes
       become_user: carlos

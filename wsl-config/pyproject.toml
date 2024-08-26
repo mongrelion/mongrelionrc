@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "wsl-config"
+version = "0.1.0"
+description = ""
+authors = ["Carlos León <mongrelion@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "wsl_config"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ansible = "^7.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
