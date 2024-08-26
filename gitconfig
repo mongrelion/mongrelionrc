@@ -40,12 +40,12 @@
 
 [core]
   excludesfile = /Users/mongrelion/.gitignore
-  editor = hx
+  editor = nvim
   rerere = enabled
   quotepath = false
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [merge]
   tool = nvim
@@ -61,3 +61,6 @@
 
 [pull]
   rebase = true
+
+[url "ssh://git@github.com"]
+    insteadOf = https://github.com
