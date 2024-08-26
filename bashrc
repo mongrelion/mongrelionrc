@@ -1,20 +1,18 @@
 export LANG="en_US.UTF-8"
-export EDITOR='vim'
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="$HOME/code/com/gv/platypus/scripts:$PATH"
-export GTK_PATH=/usr/local/lib/gtk-2.0
+export EDITOR='nvim'
 export RIPGREP_CONFIG_PATH=${HOME}/code/personal/mongrelionrc/ripgrep
+export PATH="${PATH}:${HOME}/.local/bin"
 
 SYM="x"
 PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
-
 PS1=" $PS1SYM "
+
+# Set LS_COLORS os that ls can show nice colors
+eval "$(dircolors -b)"
 
 # Vi mode
 set -o vi
-
-alias tm="tmux"
+bind -m vi-insert "\C-l.":clear-screen
 
 # Git aliases
 alias cm="git commit -v"
@@ -25,17 +23,16 @@ alias amend="git commit --amend -C HEAD"
 alias rc="git rebase --continue"
 alias lg="lazygit"
 
+alias ls="ls --color=always --block-size=M"
 alias l="tree -L 1"
 alias vim=nvim
-
-alias v=vagrant
 
 # Docker
 alias d="docker"
 alias dc="docker-compose"
+alias ld="lazydocker"
 
 # Kubernetes
-alias mk="minikube"
 alias k="kubectl"
 alias kg="kubectl get"
 alias kx="kubectx"
@@ -44,13 +41,9 @@ alias dr="docker run --rm -it"
 # Terraform
 alias t="terraform"
 
-alias ag=rg
-
 alias py="source ~/.venv/bin/activate"
 
-alias ts="npx ts-node"
 
-bind -m vi-insert "\C-l.":clear-screen
 
 # color for man pages
 man() {
@@ -85,34 +78,38 @@ _cli_bash_autocomplete() {
 
 complete -F _cli_bash_autocomplete notes
 
-function _init_ssh_agent {
+function _init_gpg_ssh_agent {
   export GPG_TTY=$(tty)
   unset SSH_AGENT_PID
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
   echo UPDATESTARTUPTTY | gpg-connect-agent > /dev/null
 }
 
-_init_ssh_agent
+function _init_vanilla_ssh_agent {
+  # check if the agent is not running already
+  count=$(procs --no-header ssh-agent | wc -l)
+  if [ "${count}" == 0 ]; then
+    eval "$(ssh-agent)"
+    ssh-add ~/.ssh/id_ed25519
+  fi
+}
 
 function ohyeah {
   printf "8==========|D"; while true; do printf "~"; sleep 1; done
 }
 
 
-if [ "$(uname -o)" == "GNU/Linux" ]
-then
-  export SHELL=/bin/bash
-  source /usr/share/fzf/key-bindings.bash
-  source /opt/asdf-vm/asdf.sh
-  source /usr/share/bash-completion/completions/asdf
-  source /usr/share/bash-completion/completions/git
-else
-  export SHELL=/usr/local/bin/bash
-  . $(brew --prefix)/etc/bash_completion
-  source /usr/local/Cellar/fzf/0.27.2/shell/key-bindings.bash
-  alias update="brew update && brew upgrade"
-fi
+export SHELL=/usr/sbin/bash
+source /usr/share/fzf/key-bindings.bash
+source /opt/asdf-vm/asdf.sh
+source /usr/share/bash-completion/completions/asdf
+source /usr/share/bash-completion/completions/git
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(starship init bash)"
+
+_init_gpg_ssh_agent
+# _init_vanilla_ssh_agent
