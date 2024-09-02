@@ -1,19 +1,22 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'kdheepak/lazygit.nvim'
+Plug 'williamboman/mason.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 
 " themes
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'David-Kunz/gen.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'github/copilot.vim'
+Plug 'numToStr/Comment.nvim'
 call plug#end()
 
 lua <<EOF
@@ -53,10 +56,14 @@ vim.g.mapleader = " "
 
 local map = vim.api.nvim_set_keymap
 
+-- Press enter in normal mode to save the current file.
+map('n', '<Enter>', ':w<CR>', {noremap = true})
+
 -- Press Spacebar for cleaning highlighted search matches.
 map('n', '<Leader><Space>', ':nohlsearch<Bar>:echo<CR>', {noremap = true})
--- Toggle NERDTree
-map('', '<Leader>n', ':NERDTreeToggle<CR>', {})
+
+-- nvim-tree
+map('', '<Leader>n', ':Neotree toggle<CR>', {})
 
 -- My CapsLock key is remapped to Ctrl and I'm too lazy to go all the way to
 -- the ESC key, so I remap that to just pressing twice jj
@@ -68,24 +75,55 @@ map('', '<C-k>', ':q<CR>', {})
 -- Press ENTER in navigation mode to save the current file.
 map('n', '<Enter>', ':w<CR>', {noremap = true})
 
--- Fuzzy search mappings
-map('', '<C-p>', ':call fzf#run(fzf#wrap({}))<CR>', {})
-map('', '<C-g>', ':Rg<CR>', {})
-
 -- Make currently open file executable
 map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 
 -- Launch lazygit
 map('', '<Leader>lg', ':LazyGit<CR>', {})
 
+-- TreeSitter
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {"python", "json", "bash", "lua", "dockerfile", "go", "hcl", "html", "javascript", "css", "toml", "yaml", "vim"},
+  sync_install = true,
+  highlight = {
+    enable = true,
+  },
+}
 
--- Telescope key bindings
+-- Key bindings
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- Search
+vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>G', builtin.git_files, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+
+-- LSP & TreeSitter
+vim.keymap.set('n', '<leader>R', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>d', builtin.lsp_definitions, {})
+vim.keymap.set('n', '<leader>D', builtin.lsp_type_definitions, {})
+vim.keymap.set('n', '<leader>i', builtin.lsp_implementations, {})
+vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, {})
+vim.keymap.set('n', '<leader>s', builtin.treesitter, {})
+
+-- Telescope other configs
 require("telescope").load_extension("ui-select")
+require("telescope").setup {
+  pickers = {
+    colorscheme = {
+      enable_preview = true,
+      theme = "dropdown",
+      prompt_title = "Colorschemes",
+      results_title = false,
+      previewer = false,
+      layout_config = {
+        width = 0.2,
+        height = 0.5,
+      },
+    },
+  }
+}
 
 -- AI assistant key bindings
 vim.keymap.set('v', '<leader>a', ':Gen <CR>', {})
@@ -98,9 +136,6 @@ vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 vim.cmd('autocmd BufNewFile,BufRead ~/.kube/config set syntax=yaml')
 
 local lsp = require('lspconfig')
-local nodebinpath = os.getenv('HOME') .. '/.asdf/shims'
-local tsserverbin = nodebinpath .. '/typescript-language-server'
-local yamllsbin = nodebinpath .. '/yaml-language-server'
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -116,20 +151,19 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('i', '<C-Tab>', '<Cmd>lua vim.lsp.buf.completion()<CR>', opts)
-  buf_set_keymap('n', '<space>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  --buf_set_keymap('n', '<space>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  --buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 end
+
+lsp["tflint"].setup{}
 
 lsp["terraformls"].setup {
   capabilities = capabilities,
@@ -139,15 +173,17 @@ lsp["terraformls"].setup {
   }
 }
 
-lsp["tsserver"].setup {
-  cmd = { tsserverbin, '--stdio' },
-  on_attach = on_attach
-}
+lsp["pyright"].setup {}
 
-lsp["yamlls"].setup {
-  cmd = { yamllsbin, '--stdio' },
-  on_attach = on_attach
-}
+lsp["yamlls"].setup {}
+
+--  lsp["yamlls"].setup {
+--    cmd = { yamllsbin, '--stdio' },
+--    on_attach = on_attach
+--  }
+
+require("mason").setup()
+require('Comment').setup()
 EOF
 
 " Run Terraform formatting on the currently open file
