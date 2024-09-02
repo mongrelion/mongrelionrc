@@ -117,7 +117,7 @@ keybinds clear-defaults=true {
     }
 
     session {
-        bind "Ctrl o" { SwitchToMode "Normal"; }
+        bind "Ctrl a" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
     }
@@ -177,7 +177,7 @@ keybinds clear-defaults=true {
     }
 
     shared_except "session" "locked" {
-        bind "Ctrl o" { SwitchToMode "Session"; }
+        bind "Ctrl a" { SwitchToMode "Session"; }
     }
 
     shared_except "tab" "locked" {
