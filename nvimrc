@@ -177,6 +177,8 @@ lsp["pyright"].setup {}
 
 lsp["yamlls"].setup {}
 
+lsp["bashls"].setup {}
+
 --  lsp["yamlls"].setup {
 --    cmd = { yamllsbin, '--stdio' },
 --    on_attach = on_attach
