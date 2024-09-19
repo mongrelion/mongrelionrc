@@ -187,7 +187,17 @@ local on_attach = function(client, bufnr)
 
 end
 
-lsp["tflint"].setup{}
+local lsp_servers = {
+  "bashls",
+  "pyright",
+  "tflint",
+  "yamlls",
+  "tsserver",
+}
+
+for _, lsp_server in ipairs(lsp_servers) do
+  lsp[lsp_server].setup {}
+end
 
 lsp["terraformls"].setup {
   capabilities = capabilities,
@@ -196,17 +206,6 @@ lsp["terraformls"].setup {
     debounce_text_changes = 150,
   }
 }
-
-lsp["pyright"].setup {}
-
-lsp["yamlls"].setup {}
-
-lsp["bashls"].setup {}
-
---  lsp["yamlls"].setup {
---    cmd = { yamllsbin, '--stdio' },
---    on_attach = on_attach
---  }
 
 require("mason").setup()
 require('Comment').setup()
