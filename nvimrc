@@ -56,6 +56,9 @@ vim.g.mapleader = " "
 
 local map = vim.api.nvim_set_keymap
 
+-- C-v doesn't work great in Windows / Terminal, so we remap it to <Leader>v
+map('n', '<Leader>v', '<C-v>', {noremap = true})
+
 -- Press enter in normal mode to save the current file.
 map('n', '<Enter>', ':w<CR>', {noremap = true})
 
