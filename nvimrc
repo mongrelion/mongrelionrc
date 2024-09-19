@@ -86,10 +86,31 @@ map('', '<Leader>lg', ':LazyGit<CR>', {})
 
 -- TreeSitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {"python", "json", "bash", "lua", "dockerfile", "go", "hcl", "html", "javascript", "css", "toml", "yaml", "vim"},
   sync_install = true,
+
   highlight = {
     enable = true,
+  },
+
+  indent = {
+    enable = true,
+  },
+
+  ensure_installed = {
+    "bash",
+    "css",
+    "dockerfile",
+    "go",
+    "hcl",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "terraform",
+    "toml",
+    "yaml",
+    "vim"
   },
 }
 
