@@ -1,0 +1,5 @@
+require('mason').setup()
+require('Comment').setup()
+require('config.treesitter')
+require('config.lsp')
+require('config.telescope')
