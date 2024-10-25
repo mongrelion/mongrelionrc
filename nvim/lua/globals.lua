@@ -1,3 +1,6 @@
+-- Enable syntax highlighting
+vim.cmd('syntax enable')
+
 -- Set syntax for terraform state files
 vim.cmd('autocmd BufNewFile,BufRead *.tfstate set syntax=json')
 
