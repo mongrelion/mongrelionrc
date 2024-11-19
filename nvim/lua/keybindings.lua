@@ -24,9 +24,6 @@ map('i', 'jj', '<Esc>', {noremap = true})
 -- Close tab
 map('', '<C-k>', ':q<CR>', {})
 
--- Press ENTER in navigation mode to save the current file.
-map('n', '<Enter>', ':w<CR>', {noremap = true})
-
 -- Make currently open file executable
 map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 
