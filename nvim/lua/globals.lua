@@ -10,7 +10,7 @@ vim.cmd('autocmd BufNewFile,BufRead ~/.kube/config set syntax=yaml')
 local set = vim.opt
 
 -- Show a vertical line on column #81 so that we keep things nice and tidy
-set.colorcolumn = '81'
+set.colorcolumn = '160'
 
 -- Tabs
 set.expandtab = true
@@ -36,3 +36,6 @@ set.incsearch = true
 
 -- UI
 set.nu = true
+
+-- When opening a vertical split, open it to the right
+set.splitright = true

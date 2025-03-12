@@ -31,8 +31,15 @@ map('', '<Leader>mx', ':! chmod +x %<CR><CR>', {})
 map('', '<Leader>lg', ':LazyGit<CR>', {})
 
 -- AI assistant key bindings
-vim.keymap.set('v', '<leader>a', ':Gen <CR>', {})
-vim.keymap.set('n', '<leader>a', ':Gen <CR>', {})
+copilot_chat_quick_actions = function()
+  local actions = require("CopilotChat.actions")
+  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+end
+
+local chat = require("CopilotChat")
+
+vim.keymap.set({'n', 'v'}, '<leader>a', copilot_chat_quick_actions, {})
+vim.keymap.set('n', '<leader>C', chat.toggle, {})
 
 -- Search
 vim.keymap.set('n', '<leader>f', builtin.find_files, {})

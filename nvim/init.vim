@@ -16,19 +16,23 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'David-Kunz/gen.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'github/copilot.vim'
 Plug 'numToStr/Comment.nvim'
+Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+
+"Github Copilot
+Plug 'github/copilot.vim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 call plug#end()
 
 lua <<EOF
 require("globals")
-require("keybindings")
 require("config")
+require("keybindings")
 EOF
 
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 " Setting colorscheme options from lua is giving odd behaviour.

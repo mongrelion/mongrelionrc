@@ -1,7 +1,8 @@
 export LANG="en_US.UTF-8"
 export EDITOR='nvim'
 export RIPGREP_CONFIG_PATH=${HOME}/code/personal/mongrelionrc/ripgrep
-export PATH="${PATH}:${HOME}/.local/bin"
+export ASDF_DATA_DIR="${HOME}/.asdf"
+export PATH="${ASDF_DATA_DIR}/shims:${HOME}/.local/bin:${PATH}"
 
 SYM="x"
 PS1SYM="\[\e[0;33m\]$SYM\[\e[m\]"
@@ -101,7 +102,6 @@ function ohyeah {
 
 export SHELL=/usr/sbin/bash
 source /usr/share/fzf/key-bindings.bash
-source /opt/asdf-vm/asdf.sh
 source /usr/share/bash-completion/completions/asdf
 source /usr/share/bash-completion/completions/git
 
@@ -109,7 +109,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(starship init bash)"
-
 _init_gpg_ssh_agent
 # _init_vanilla_ssh_agent
+
+function venv {
+  directory=".venv"
+  if [ -d "$directory" ]; then
+    source $directory/bin/activate
+  else
+    echo ".venv directory not found"
+  fi
+}
