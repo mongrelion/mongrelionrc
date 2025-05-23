@@ -14,6 +14,7 @@ require('nvim-treesitter.configs').setup {
     "bash",
     "css",
     "dockerfile",
+    "diff",
     "go",
     "hcl",
     "html",
