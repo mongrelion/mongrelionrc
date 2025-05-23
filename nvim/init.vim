@@ -17,7 +17,6 @@ Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'David-Kunz/gen.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'numToStr/Comment.nvim'
-Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 
 "Github Copilot
 Plug 'github/copilot.vim'
