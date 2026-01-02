@@ -1,17 +1,15 @@
 -- LSP
-local lsp = require('lspconfig')
 local servers = {
   "bashls",
   "pyright",
   "tflint",
   "terraformls",
   "yamlls",
-  "ts_ls",
   "gopls",
 }
 
 for _, server in ipairs(servers) do
-  lsp[server].setup{}
+  vim.lsp.enable(server)
 end
 
 -- Automatically format terraform files on save

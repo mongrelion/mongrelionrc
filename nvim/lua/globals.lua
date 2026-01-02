@@ -39,3 +39,7 @@ set.nu = true
 
 -- When opening a vertical split, open it to the right
 set.splitright = true
+
+set.backup = false
+set.writebackup = false
+set.swapfile = false
